@@ -3,6 +3,7 @@ import express from 'express';
 import * as fs from 'fs';
 import mysql from 'mysql';
 
+//Setting server static files.
 const app = express();
 app.use(express.static('../Front-End/'));
 app.use(express.json())
@@ -21,6 +22,7 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
+//Defining Test Post Request.
 app.post('/test', (req, res) => {
   const query = 'select * from test';
   con.query(query, function (error, results) {
@@ -39,14 +41,14 @@ con.query('DROP TABLE IF EXISTS test', function (error, results, fields) {
   // results will contain the results of the query
   // fields will contain information about the returned results fields (if any)
 });
-
+//Test Queries.
 con.query('CREATE TABLE test (first VARCHAR(255), last VARCHAR(255))', function (error, results, fields) {
   if (error) throw error;
   // error will be an Error if one occurred during the query
   // results will contain the results of the query
   // fields will contain information about the returned results fields (if any)
 });
-
+//Test Queries.
 con.query('insert into test SET first = ?, last = ?',['Austin','Wroblos'],function (error, results, fields) {
   if (error) throw error;
   //console.log(error)
@@ -55,14 +57,9 @@ con.query('insert into test SET first = ?, last = ?',['Austin','Wroblos'],functi
   // fields will contain information about the returned results fields (if any)
 });
 
-// con.query('select * from test', function (error, results, fields) {
-//   if (error) throw error;
-//   console.log(results)
-// });
-
-
+//Set server port.
 const port = 80
-
+//Write html file to web page.
 fs.readFile ('../Front-End/index.html', function(error,html)  {
     if (error) throw error;
     app.get('/', (req, response) => {
@@ -70,7 +67,7 @@ fs.readFile ('../Front-End/index.html', function(error,html)  {
         response.write(html);
         response.end();
       })
-      
+    //Listener for request.  
     app.listen(port, () => {
         console.log(`Server Started. ${port}`)
       })
