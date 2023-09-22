@@ -34,6 +34,19 @@ app.post('/test', (req, res) => {
   });
 });
 
+app.post('/pushNewUser', (req, res) => {
+  console.log(req.body.newCid)
+  const query = 'INSERT INTO customer VALUES (' + req.body.newCid + ',\'' + req.body.newFname + '\',\'' + req.body.newLname + '\',\'' + req.body.newEmail + '\',' + req.body.newPhone + ')';
+  console.log(query)
+  con.query(query, function (error, results) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(results);
+    }
+  });
+});
+
 //Test Queries.
 con.query('DROP TABLE IF EXISTS test', function (error, results, fields) {
   if (error) throw error;
