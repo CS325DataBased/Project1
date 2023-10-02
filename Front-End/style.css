@@ -5,6 +5,7 @@ width:100%;
 height:100%;
 display:block;
 position:relative;
+background-color:#f8f8f8;
 }
 
 p, h1, h2, h3, h4, h5, h6, a, span, link, ul, li {
@@ -46,9 +47,14 @@ text-transform:none!important;
 #selected-row {
 width:calc(40% + 30px);
 background-color:#f8f8f8;
+opacity:0%;
+transition: all 0.5s, transform 0.25s;
+transform:scale(0.95);
+transform-origin: top left;
+transition-timing-function:cubic-bezier(0.8,0,0,1);
 }
 
-#customer-selection {
+#row-selection {
     overflow-y: auto;
     overflow-x: hidden;
     height: calc(100% - 70px);
@@ -83,7 +89,7 @@ padding-right: 7.5px;
 }
 
 
-#customer-selection-table-header {
+#row-selection-table-header {
     position: sticky;
     top: 0;
     background-color: white;

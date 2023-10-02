@@ -5,6 +5,10 @@ function formatNumber(number) {
 
 var displayRow = function(id, name, price, quantity){
 
+document.getElementById('selected-row').style.backgroundImage = "none";    
+document.getElementById('selected-row').style.opacity = "100%";
+document.getElementById('selected-row').style.transform = "scale(1)";
+
 document.getElementById('selected-row-name').innerHTML = name;
 document.getElementById('selected-row-id').innerHTML = "#"+formatNumber(id);
 document.getElementById('selected-row-quantity').innerHTML = quantity;
