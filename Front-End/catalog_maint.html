@@ -40,14 +40,14 @@
 
 <div class = "uk-container uk-child-width-1-2 uk-grid" style = "height:100%" >
 
-<div id = "selected-customer" >
+<div id = "selected-row" >
 
 <div class = "uk-padding" style = "padding:30px;" > 
 
-<div id = "selected-customer-title" ><h1>Part Name</h1><p>#0000</p></div>
-<h3>Price:<p>$123</p></h3>
+<div id = "selected-row-title" ><h1 id = "selected-row-name">Part Name</h1><p id = "selected-row-id">#0000</p></div>
+<h3>Price:<p id = "selected-row-price" >$123</p></h3>
 <hr>
-<h3>Quantity:<p>456</p></h3>
+<h3>Quantity:<p id = "selected-row-quantity">456</p></h3>
 <br>
 
 <button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
@@ -63,78 +63,14 @@
 <table class="uk-table uk-table-striped">
     <thead>
         <tr id = "customer-selection-table-header">
-            <th><i class="ri-hashtag"></i>           <span>ID</span>      </th>
-            <th><i class="ri-price-tag-3-fill"></i>  <span>Name</span>    </th>
-            <th><i class="ri-bubble-chart-fill"></i> <span>Actions</span> </th>
+            <th><i class="ri-hashtag"></i>                  <span>ID</span>      </th>
+            <th><i class="ri-price-tag-3-fill"></i>         <span>Name</span>    </th>
+            <th><i class="ri-numbers-fill"></i>             <span>Quantity</span></th>
+            <th><i class="ri-money-dollar-circle-fill"></i> <span>Price</span>   </th>
+            <th><i class="ri-bubble-chart-fill"></i>        <span>Actions</span> </th>
         </tr>
     </thead>
-    <tbody>
-        <tr>
-            <td>9999</td>
-            <td>Typewriter</td>
-            <td>
-			<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>
-        </tr>
-        <tr>
-            <td>9998</td>
-            <td>Ink Ribbon</td>
-            <td>
-			<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>
-        </tr>
-        <tr>
-            <td>9997</td>
-            <td>'F' Key</td>
-            <td>
-			<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>9996</td>
-            <td>'B' Key</td>
-            <td>
-			<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>9995</td>
-            <td>Metal Frame</td>
-            <td>
-			<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>9994</td>
-            <td>Decal Set</td>
-            <td>
-			<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>9993</td>
-            <td>Red Ink Cartidge</td>
-            <td>
-			<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>9992</td>
-            <td>Blue Ink Cartidge</td>
-            <td>
-			<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>9991</td>
-            <td>Phillips Screwdriver</td>
-            <td>
-			<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-			
+    <tbody id = "itemBody">
     </tbody>
 </table>
 
@@ -146,5 +82,21 @@
 
 </body>
 
+<script src = "pageFunctions.js"></script>
+
+<script>
+
+addItem(9999, "Typewriter", 1199.99, 10);
+addItem(9998, "Ink Ribbon", 59.99, 20);
+addItem(9997, "F Key", 2.99, 60);
+addItem(9996, "B Key", 2.99, 60);    
+addItem(9995, "Metal Frame", 699.99, 15);
+addItem(9994, "Decal Set", 59.99, 10);
+addItem(9993, "Red Ink Cartridge", 9.99, 50);
+addItem(9992, "Blue Ink Cartridge", 9.99, 50);
+addItem(9991, "Flathead Screwdriver", 4.99, 100);
+
+</script>
+
 </html>
->>>>>>> Stashed changes
+

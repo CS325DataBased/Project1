@@ -11,7 +11,7 @@ p, h1, h2, h3, h4, h5, h6, a, span, link, ul, li {
 font-family: 'Prompt', sans-serif!important;
 }
 
-button, #selected-customer p, input {
+button, #selected-row p, input {
 border-radius:5px!important;    
 }
 
@@ -43,33 +43,33 @@ button {
 text-transform:none!important;
 }
 
-#selected-customer {
+#selected-row {
 width:calc(40% + 30px);
 background-color:#f8f8f8;
 }
 
 #customer-selection {
-overflow-y:auto;
-overflow-x:hidden;
-height:100%;
-width:calc(60% - 30px);
-padding-left:0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100% - 70px);
+    width: calc(60% - 30px);
+    padding-left: 0px;
 }
 
-#selected-customer-title {
+#selected-row-title {
 display:block;
 width:100%;
 overflow:hidden;
 white-space:nowrap;
 }
 
-#selected-customer h1 {
+#selected-row h1 {
 display:inline-block;
 font-size:30px;
 vertical-align:sub;
 }
 
-#selected-customer p {
+#selected-row p {
 display:inline-block;
 font-size:15px;
 color:white;
@@ -123,4 +123,14 @@ transform:scale(1.05);
 
 tr {
 cursor:pointer!important;    
+}
+
+th {
+white-space: nowrap;    
+}
+
+
+td .uk-edit-button, td .uk-delete-button {
+margin: 7.5px;    
+margin-top:0px;
 }
