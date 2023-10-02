@@ -1,123 +1,126 @@
-* {
-    margin: 0;
-    padding: 1;
-    box-sizing: border-box;
+body, html {
+font-family: 'Prompt', sans-serif;
+overflow:hidden;
+width:100%;
+height:100%;
+display:block;
+position:relative;
 }
 
-:root {
-    --primary-color: #28a745; 
-    --secondary-color: #6c757d;
-    --background-color: #f8f9fa;
-    --text-color: #333;
-    --border-color: #ddd;
+p, h1, h2, h3, h4, h5, h6, a, span, link, ul, li {
+font-family: 'Prompt', sans-serif!important;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
+button, #selected-customer p, input {
+border-radius:5px!important;    
 }
 
-header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-
-main {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-}
-
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.customer-item {
+.uk-navbar-container .uk-navbar-left .uk-navbar-nav {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    border: 1px solid var(--border-color);
-    padding: 10px;
-    margin: 10px 0;
+}
+
+nav {
+padding:15px;
+background-color:#999!important;
+}
+
+nav img {
+    width: 40px;
+    margin-right: 0px;
     border-radius: 5px;
+    margin-left: 0px;
+    padding: 0px;
+    cursor:pointer;    
 }
 
-.customer-item p {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0;
+.uk-search-input, nav button {
+background-color:white!important;
+border:none!important;
 }
 
-.button-container {
-    display: flex;
-    gap: 10px; 
+button {
+text-transform:none!important;
 }
 
-.customer-item button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+#selected-customer {
+width:calc(40% + 30px);
+background-color:#f8f8f8;
 }
 
-.customer-item button:hover {
-    background-color: #1e7e34; 
+#customer-selection {
+overflow-y:auto;
+overflow-x:hidden;
+height:100%;
+width:calc(60% - 30px);
+padding-left:0px;
 }
 
-#customerDetails {
-    background-color: #f2f2f2;
-    padding: 20px;
-    border-radius: 50px;
-    margin-top: 20px;
+#selected-customer-title {
+display:block;
+width:100%;
+overflow:hidden;
+white-space:nowrap;
 }
 
-#customerDetails h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
+#selected-customer h1 {
+display:inline-block;
+font-size:30px;
+vertical-align:sub;
 }
 
-#customerForm input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
+#selected-customer p {
+display:inline-block;
+font-size:15px;
+color:white;
+background-color:#999;
+border-radius:0vmin;
+padding:5px;
+margin:0px 0px 0px 15px;
+vertical-align:middle;
+padding-left: 7.5px;
+padding-right: 7.5px;
 }
 
-#customerForm button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    margin-bottom: 10px;
-    padding: 10px 15px;
-    border-radius: 50px;
-    cursor: pointer;
+
+#customer-selection-table-header {
+    position: sticky;
+    top: 0;
+    background-color: white;
 }
 
-#customerForm button:hover {
-    background-color: #1e7e34; 
+.uk-padding h3 {
+    font-size: 16px;
+    display: block;
+    padding: 0px;
+    margin: 0px;
 }
 
-#cancelBtn {
-    background-color: var(--primary-color); 
-    color: white;
-    margin-left: 10px;
-    border: none; 
-    padding: 5px 7.5px;
-    border-radius: 50px;
-    cursor: pointer;
+.uk-padding hr {
+    margin: 10px;
+    margin-left: 0px;
+    margin-right: 0px;    
 }
 
-#cancelBtn:hover {
-    background-color: #1e7e34; 
+.uk-edit-button {
+background-color:#ffa50050!important;
+border:none!important;
+}
+
+.uk-delete-button {
+background-color: #ff000050!important;
+border:none!important;
+}
+
+.uk-add-button {
+    background-color: #d5ffd5!important;
+    border:none!important
+    }
+
+.uk-edit-button:hover, .uk-delete-button:hover, .uk-add-button:hover {
+transform:scale(1.05);
+}
+
+tr {
+cursor:pointer!important;    
 }
