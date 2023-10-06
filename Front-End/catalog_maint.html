@@ -1,0 +1,102 @@
+<html>
+
+<title>Catalog Maintenance</title>
+<link href = "style.css" rel = "stylesheet" />
+<link href = "uikit/uikit.min.css" rel = "stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap" rel="stylesheet">
+<link href="remixicon/remixicon.css" rel="stylesheet">
+<script src = "uikit/uikit.min.js" ></script>
+<script src = "uikit/uikit-icons.min.js" ></script>
+
+<body>
+
+<nav class="uk-navbar-container">
+    <div class="uk-container" style = "padding-left:0px" >
+        <div uk-navbar>
+
+            <div class="uk-navbar-left">
+
+                <ul class="uk-navbar-nav">
+
+                    <i style = "font-size:20px;cursor:pointer" class="ri-menu-fill"></i>
+                    
+				<li><form class="uk-search uk-search-default">
+<input class="uk-search-input" type="search" placeholder="Search..." aria-label="Search...">
+</form></li>
+				
+                    <li><button class = "uk-button uk-button-default uk-add-button"><i style = "font-weight:900" class="ri-add-fill"></i> <span>New Part</span></button></li>
+					
+                </ul>
+
+            </div>
+			
+			
+
+        </div>
+    </div>
+</nav>
+
+<div class = "uk-container uk-child-width-1-2 uk-grid" style = "height:100%" >
+
+<div id = "selected-row" >
+
+<div class = "uk-padding" style = "padding:30px;" > 
+
+<div id = "selected-row-title" ><h1 id = "selected-row-name">Part Name</h1><p id = "selected-row-id">#0000</p></div>
+<h3>Price:<p id = "selected-row-price" >$123</p></h3>
+<hr>
+<h3>Quantity:<p id = "selected-row-quantity">456</p></h3>
+<br>
+
+<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
+<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
+
+</div>
+
+</div>
+
+<div id = "row-selection">
+
+
+<table class="uk-table uk-table-striped">
+    <thead>
+        <tr id = "row-selection-table-header">
+            <th><i class="ri-hashtag"></i>                  <span>ID</span>      </th>
+            <th><i class="ri-price-tag-3-fill"></i>         <span>Name</span>    </th>
+            <th><i class="ri-numbers-fill"></i>             <span>Quantity</span></th>
+            <th><i class="ri-money-dollar-circle-fill"></i> <span>Price</span>   </th>
+            <th><i class="ri-bubble-chart-fill"></i>        <span>Actions</span> </th>
+        </tr>
+    </thead>
+    <tbody id = "itemBody">
+    </tbody>
+</table>
+
+
+
+</div>
+
+</div>
+
+</body>
+
+<script src = "pageFunctions.js"></script>
+
+<script>
+
+addItem(9999, "Typewriter", 1199.99, 10);
+addItem(9998, "Ink Ribbon", 59.99, 20);
+addItem(9997, "F Key", 2.99, 60);
+addItem(9996, "B Key", 2.99, 60);    
+addItem(9995, "Metal Frame", 699.99, 15);
+addItem(9994, "Decal Set", 59.99, 10);
+addItem(9993, "Red Ink Cartridge", 9.99, 50);
+addItem(9992, "Blue Ink Cartridge", 9.99, 50);
+addItem(9991, "Flathead Screwdriver", 4.99, 100);
+
+</script>
+
+</html>
+
