@@ -1,4 +1,8 @@
 var itemBody = document.getElementById('itemBody');
+var idArray = [];
+var nameArray = [];
+var priceArray = [];
+var quantityArray = [];
 
 // 4-digit number converter
 function formatNumber(number) {
@@ -7,7 +11,7 @@ function formatNumber(number) {
 
 // random number generator
 function generateRandomNumber() {
-  const numbers = Array.from(Array(9999), (_, i) => i + 1);
+  var numbers = Array.from(Array(9999), (_, i) => i + 1);
   numbers.sort(() => Math.random() - 0.5);
   return numbers[0];
 }
@@ -15,7 +19,7 @@ function generateRandomNumber() {
 
 
 // input element that restricts input to 4 digits
-const input4Elements = document.querySelectorAll('.input-4-numbers');
+var input4Elements = document.querySelectorAll('.input-4-numbers');
 input4Elements.forEach(input => {
   input.addEventListener('keypress', e => {
     if (!e.key.match(/\d|Backspace/)) e.preventDefault();
@@ -40,6 +44,15 @@ var displayRow = function (id, name, price, quantity) {
   document.getElementById('selected-row-id').innerHTML = "#" + formatNumber(id);
 
   document.getElementById('selected-row-delete-button').onclick = function () { deleteRow(id) };
+  document.getElementById('selected-row-edit-button').onclick = function () {
+
+if (quantity) {
+editPart(id,name,price,quantity);
+} else {
+editCustomer(id,name);
+}
+
+  };
 
   // if we're on the catalog page, display the quantity value
   if (quantity) {
@@ -71,8 +84,14 @@ function deleteRow(id) {
 
 // addPart
 var addPart = function (id, name, price, quantity) {
+
+  idArray.push(formatNumber(id));
+  nameArray.push(name);
+  priceArray.push(price);
+  quantityArray.push(quantity);
+
   elementHTML = `
-    <tr data-type = "row${formatNumber(id)}" >
+    <tr general-data-type = "row" data-type = "row${formatNumber(id)}" >
       <td onclick="displayRow(${id}, '${name}', ${price}, ${quantity})" data-id="${formatNumber(id)}">${formatNumber(id)}</td>
       <td onclick="displayRow(${id}, '${name}', ${price}, ${quantity})" data-name="${name}">${name}</td>
       <td onclick="displayRow(${id}, '${name}', ${price}, ${quantity})" data-quantity="${quantity}">${quantity}</td>
@@ -88,8 +107,12 @@ var addPart = function (id, name, price, quantity) {
 
 // addCustomer
 var addCustomer = function (id, name) {
+
+  idArray.push(formatNumber(id));
+  nameArray.push(name);
+
   elementHTML = `
-    <tr data-type = "row${formatNumber(id)}" >
+    <tr general-data-type = "row" data-type = "row${formatNumber(id)}" >
       <td onclick="displayRow(${id}, '${name}')" data-id="${formatNumber(id)}">${formatNumber(id)}</td>
       <td onclick="displayRow(${id}, '${name}')" data-name="${name}">${name}</td>
       <td>
@@ -163,6 +186,8 @@ var createNewCustomer = function () {
 
 var editPart = function(id, name, price, quantity){
 
+UIkit.modal("#part-edit-modal").show();
+
 document.getElementById('editPartID').value = formatNumber(id);
 document.getElementById('editPartName').value = name;
 document.getElementById('editPartPrice').value = price;
@@ -198,6 +223,7 @@ var editPartValues = function(id, name, price, quantity) {
   
     `;
 
+    displayRow(id, name, price, quantity);
     UIkit.modal("#part-edit-modal").hide();
 
     //now, reset all of the input boxes.
@@ -211,6 +237,8 @@ document.getElementById('editPartQuantity').value = "";
 };
 
 var editCustomer = function(id, name){
+
+  UIkit.modal("#customer-edit-modal").show();
 
   document.getElementById('editCustomerID').value = formatNumber(id);;
   document.getElementById('editCustomerName').value = name;
@@ -241,6 +269,7 @@ var editCustomer = function(id, name){
     
       `;
   
+      displayRow(id, name);
       UIkit.modal("#customer-edit-modal").hide();
   
       //now, reset all of the input boxes.
@@ -250,3 +279,61 @@ var editCustomer = function(id, name){
       }, 1000);
   
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  function searchTableRow(inputElementId, tableRowElement) {
+    // Get the search term from the input element.
+    const searchTerm = document.getElementById(inputElementId).value;
+  
+    // Loop through the table row element's child elements.
+    for (const element of tableRowElement) {
+      // Check if the text content of the element matches the search term.
+      if (element.textContent.toString().toLowerCase().includes(searchTerm)) {
+        // Highlight the element.
+        element.classList.add('highlight');
+      } else {
+        element.classList.remove('highlight');
+      }
+    }
+  }
+
+  
+  document.getElementById('search-input').addEventListener('input', (event) => {
+
+      // Get the table row element.
+      const tableRowElement = document.querySelectorAll('tr[general-data-type="row"]');
+      console.log(tableRowElement);
+
+    if (document.getElementById('search-input').value == "" || document.getElementById('search-input').value == " " || document.getElementById('search-input').value == "  "){
+
+      for (const element of tableRowElement) {
+          // Highlight the element.
+          element.classList.remove('highlight');
+      }
+
+    } else {
+
+      // Call the searchTableRow() function.
+      searchTableRow('search-input', tableRowElement);
+    }
+  });
+
