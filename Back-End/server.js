@@ -1,5 +1,5 @@
 //Imports.
-import express from 'express';
+import express, { json } from 'express';
 import * as fs from 'fs';
 import mysql from 'mysql';
 
@@ -34,15 +34,15 @@ app.post('/test', (req, res) => {
   });
 });
 
-app.post('/pushNewUser', (req, res) => {
-  console.log(req.body.newCid)
-  const query = 'INSERT INTO customer VALUES (' + req.body.newCid + ',\'' + req.body.newFname + '\',\'' + req.body.newLname + '\',\'' + req.body.newEmail + '\',' + req.body.newPhone + ')';
-  console.log(query)
+//Defining Test Post Request.
+app.get('/GetCustomerData', (req, res) => {
+  const query = 'select * from customer';
   con.query(query, function (error, results) {
     if (error) {
       console.log(error);
     } else {
       console.log(results);
+      res.json(results);
     }
   });
 });
