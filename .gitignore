@@ -1,1 +1,5 @@
 Back-End/server.js.bak
+.vscode/settings.json
+.vscode/c_cpp_properties.json
+.gitignore
+.vscode/launch.json

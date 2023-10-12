@@ -14,6 +14,7 @@
 // const { addCustomer } = require('./pageFunctions.js');
 
 document.addEventListener("DOMContentLoaded", function(){
+  console.log('hello')
     const url = 'http://localhost:80/GetCustomerData';
     const response = fetch(url, {
       method: 'GET',
