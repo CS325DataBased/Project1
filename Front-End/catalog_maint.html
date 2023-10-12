@@ -50,7 +50,34 @@
             <button onclick = "createNewPart()" class="uk-button uk-button-primary uk-add-button" style = "color:#1a1a1a" type="button"><i style = "font-weight:900" class="ri-check-fill"></i> Add Part</button>
 
     </div>
-</div>                    
+</div>
+
+<div id="part-edit-modal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">Edit Part</h2>
+        <!--EDIT ID-->
+        <span>ID</span>
+        <input id = "editPartID" type = "text" placeholder = "XXXX" value = ""></input>
+        <br>
+        <!--EDIT NAME-->
+        <span>Name</span>
+        <input id = "editPartName" type = "text" placeholder = "New Part" value = "New Part"></input>
+        <br>
+        <span>Quantity</span>
+        <!--EDIT QUANTITY-->
+        <input id = "editPartQuantity" type="number" placeholder = "----" class="input-4-numbers" maxlength="4">
+        <br>
+        <span>Price</span>
+        <!--EDIT PRICE-->
+        <input id = "editPartPrice" type="number" placeholder = "--.--" step="0.01">
+<br>
+<br>
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button id = "editPartButton" onclick = "editPart()" class="uk-button uk-button-primary uk-add-button" style = "color:#1a1a1a" type="button"><i style = "font-weight:900" class="ri-check-fill"></i> Save Edits</button>
+
+    </div>
+</div>
+
 </li>
 					
                 </ul>
