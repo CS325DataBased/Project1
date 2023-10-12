@@ -1,5 +1,8 @@
 <html>
 
+<link rel="shortcut icon" href="favi.png">
+<title>DATA BASED Product Demo</title>
+<link href = "pageStyle.css" rel = "stylesheet" />
 <link href = "uikit/uikit.min.css" rel = "stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -8,145 +11,43 @@
 <script src = "uikit/uikit.min.js" ></script>
 <script src = "uikit/uikit-icons.min.js" ></script>
 
-<head>
-
 <style>
 
-body, html {
-font-family: 'Prompt', sans-serif;
-overflow:hidden;
-width:100%;
-height:100%;
-display:block;
-position:relative;
-}
-
-p, h1, h2, h3, h4, h5, h6, a, span, link, ul, li {
-font-family: 'Prompt', sans-serif!important;
-}
-
-.uk-navbar-container .uk-navbar-left .uk-navbar-nav {
-    display: flex;
-    align-items: center;
-}
-
-nav {
-padding:15px;
-background-color:#8c1dcc!important;
-}
-
-.uk-search-input, nav button {
-background-color:white!important;
-border:none!important;
-}
+body {
+padding:10px;
+box-sizing: border-box;
+white-space:nowrap;
+text-align:center;
+}    
 
 button {
-text-transform:none!important;
+    background-image: url('https://images.unsplash.com/photo-1579547621706-1a9c79d5c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80');
+    width: calc(50% - 7.5px);
+    box-sizing: border-box;
+    background-position: center;
+    color: white;
+    font-family: 'Prompt';
+    border: none;
+    background-size: 220%;
+    background-repeat:no-repeat;
+    display: inline-block;
+    height: 100%;
+    font-size: 30px;
+    text-shadow: 2.5px 2.5px 0px black;
+    font-weight: 900;  
+    transition: all 0.75s ease-in;
+    transition-timing-function:cubic-bezier(0.8,0,0,1);
+    margin-left:2.5px;
+    margin-right:2.5px;
 }
 
-#selected-customer {
-width:calc(40% + 30px);
-background-color:#f8f8f8;
+button:hover {
+text-shadow: 4px 4px 0px black;
+background-size:300%;
+cursor:pointer;    
 }
-
-#customer-selection {
-overflow-y:auto;
-overflow-x:hidden;
-height:100%;
-width:calc(60% - 30px);
-padding-left:0px;
-}
-
-#selected-customer-title {
-display:block;
-width:100%;
-overflow:hidden;
-white-space:nowrap;
-}
-
-#selected-customer h1 {
-display:inline-block;
-font-size:30px;
-vertical-align:sub;
-}
-
-#selected-customer p {
-display:inline-block;
-font-size:15px;
-color:white;
-background-color:#999;
-border-radius:0vmin;
-padding:5px;
-margin:0px 0px 0px 15px;
-vertical-align:middle;
-}
-
-#selected-customer button {
-
-}
-
-#customer-selection-table-header {
-    position: sticky;
-    top: 0;
-    background-color: white;
-}
-
-#new-customer-div {
-  position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: 2;
-  cursor: pointer;
-}
-#new-customer-info-div {
-  position: absolute;
-  height: 300px;
-  width: 400px;
-  top: 40%;
-  left: 43%;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-}
-
-#new-customer-info-form {
-  position: absolute;
-  top: 10%;
-  left: 5%;
-  right: 0;
-  bottom: 0;
-  align-items: flex;
-}
-
-#new-submit {
-  position: relative;
-  height: 20px;
-  width: 60px;
-  left: 5%;
-  right: 0;
-  bottom: 0%;
-}
-
-#new-cancel {
-  position: relative;
-  height: 20px;
-  width: 60px;
-  left: 5%;
-  right: 0;
-  bottom: 0;
-}
-
 
 </style>
-
-</head>
 
 <body>
 
@@ -170,130 +71,7 @@ vertical-align:middle;
 
 </div>
 
-<nav class="uk-navbar-container">
-    <div class="uk-container" style = "padding-left:0px" >
-        <div uk-navbar>
+<button onclick = "window.location.href = 'customer_maint.html'" >Customer Maintenance</button>  
+<button onclick = "window.location.href = 'catalog_maint.html'" style = "background-image:url('https://images.unsplash.com/photo-1554034483-04fda0d3507b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80')" >Catalog Maintenance</button>    
 
-            <div class="uk-navbar-left">
-
-                <ul class="uk-navbar-nav">
-				
-				<li><form class="uk-search uk-search-default">
-<input class="uk-search-input" type="search" placeholder="Search..." aria-label="Search...">
-</form></li>
-				
-                    <li><button id = "New-Customer-Button" class = "uk-button uk-button-default"><i class="ri-user-add-fill"></i> <span>New Customer</span></button></li>
-					
-                </ul>
-
-            </div>
-			
-			
-
-        </div>
-    </div>
-</nav>
-
-<div class = "uk-container uk-child-width-1-2 uk-grid" style = "height:100%" >
-
-<div id = "selected-customer" >
-
-<div class = "uk-padding" style = "padding:30px;" > 
-
-<div id = "selected-customer-title" ><h1>Customer Name</h1><p>#0000</p></div>
-
-<button class = "uk-button uk-button-default" ><i class="ri-pencil-fill"></i> Edit</button>
-<button class = "uk-button uk-button-default" ><i class="ri-delete-bin-fill"></i> Delete</button>
-
-</div>
-
-</div>
-
-<div id = "customer-selection">
-
-
-<table class="uk-table uk-table-striped">
-    <thead>
-        <tr id = "customer-selection-table-header">
-            <th><i class="ri-hashtag"></i>           <span>ID</span>      </th>
-            <th><i class="ri-price-tag-3-fill"></i>  <span>Name</span>    </th>
-            <th><i class="ri-bubble-chart-fill"></i> <span>Actions</span> </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>0001</td>
-            <td>John Smith</td>
-            <td>
-			<button class = "uk-button uk-button-default" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>
-        </tr>
-        <tr>
-            <td>0002</td>
-            <td>Jane Doe</td>
-            <td>
-			<button class = "uk-button uk-button-default" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>
-        </tr>
-        <tr>
-            <td>0003</td>
-            <td>Bob Jones</td>
-            <td>
-			<button class = "uk-button uk-button-default" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>0004</td>
-            <td>Tom Atkins</td>
-            <td>
-			<button class = "uk-button uk-button-default" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>0005</td>
-            <td>William Miller </td>
-            <td>
-			<button class = "uk-button uk-button-default" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>0006</td>
-            <td>Michael Davis</td>
-            <td>
-			<button class = "uk-button uk-button-default" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>0007</td>
-            <td>Jerry Wilson</td>
-            <td>
-			<button class = "uk-button uk-button-default" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>0008</td>
-            <td>Tim Anderson</td>
-            <td>
-			<button class = "uk-button uk-button-default" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-        <tr>
-            <td>0009</td>
-            <td>Melinda Carter</td>
-            <td>
-			<button class = "uk-button uk-button-default" ><i class="ri-pencil-fill"></i> Edit</button>
-			<button class = "uk-button uk-button-default" ><i class="ri-delete-bin-fill"></i> Delete</button>
-			</td>        </tr>
-			
-    </tbody>
-</table>
-
-
-</div>
-
-</div>
-<script src = "script.js" ></script>
 </body>
-</html>

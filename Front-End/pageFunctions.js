@@ -100,7 +100,6 @@ var addCustomer = function (id, name) {
   `;
   itemBody.innerHTML += elementHTML;
 };
-// module.exports = {addCustomer};
 
 // create new part
 var createNewPart = function () {

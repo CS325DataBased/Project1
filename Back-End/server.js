@@ -73,7 +73,7 @@ con.query('insert into test SET first = ?, last = ?',['Austin','Wroblos'],functi
 //Set server port.
 const port = 80
 //Write html file to web page.
-fs.readFile ('../Front-End/index.html', function(error,html)  {
+fs.readFile ('../Front-End/customer_maint.html', function(error,html)  {
     if (error) throw error;
     app.get('/', (req, response) => {
         response.writeHeader(200, {"Content-Type": "text/html"});
