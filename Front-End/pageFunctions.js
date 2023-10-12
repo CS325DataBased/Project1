@@ -35,10 +35,12 @@ var displayRow = function (id, name, price, quantity) {
 
     document.getElementById('selected-row').style.backgroundImage = "none";
     document.getElementById('selected-row').style.opacity = "100%";
+    document.getElementById('selected-row').style.pointerEvents = "auto";
     document.getElementById('selected-row').style.transform = "scale(1)";
 
     document.getElementById('selected-row-name').innerHTML = name;
     document.getElementById('selected-row-id').innerHTML = "#" + formatNumber(id);
+    document.getElementById('selected-row-delete-button').onclick = function(){deleteRow(id)};
     document.getElementById('selected-row-quantity').innerHTML = quantity;
     document.getElementById('selected-row-price').innerHTML = "$" + price;
 
@@ -57,7 +59,8 @@ function deleteRow(id) {
       transition: all 0.5s, transform 0.25s;
       transform:scale(0.95);
       transform-origin: top left;
-      transition-timing-function:cubic-bezier(0.8,0,0,1);`
+      transition-timing-function:cubic-bezier(0.8,0,0,1);
+      pointer-events:none;`
     }
   }
 
