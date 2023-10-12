@@ -26,7 +26,31 @@
 <input class="uk-search-input" type="search" placeholder="Search..." aria-label="Search...">
 </form></li>
 				
-                    <li><button class = "uk-button uk-button-default uk-add-button"><i style = "font-weight:900" class="ri-add-fill"></i> <span>New Part</span></button></li>
+                    <li>
+                    <button  uk-toggle="target: #part-creation-modal" class = "uk-button uk-button-default uk-add-button"><i style = "font-weight:900" class="ri-add-fill"></i> <span>New Part</span></button>
+
+<!-- This is the modal -->
+<div id="part-creation-modal" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <h2 class="uk-modal-title">New Part</h2>
+        <!--NAME-->
+        <span>Name</span>
+        <input id = "partName" type = "text" placeholder = "New Part" value = "New Part"></input>
+        <br>
+        <span>Quantity</span>
+        <!--QUANTITY-->
+        <input id = "partQuantity" type="number" placeholder = "----" class="input-4-numbers" maxlength="4">
+        <br>
+        <span>Price</span>
+        <!--PRICE-->
+        <input id = "partPrice" type="number" placeholder = "--.--" step="0.01">
+<br>
+<br>
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button onclick = "createNewPart()" class="uk-button uk-button-primary uk-add-button" style = "color:#1a1a1a" type="button"><i style = "font-weight:900" class="ri-check-fill"></i> Create Part</button>
+
+    </div>
+</div>                    </li>
 					
                 </ul>
 
@@ -89,12 +113,6 @@
 addItem(9999, "Typewriter", 1199.99, 10);
 addItem(9998, "Ink Ribbon", 59.99, 20);
 addItem(9997, "F Key", 2.99, 60);
-addItem(9996, "B Key", 2.99, 60);    
-addItem(9995, "Metal Frame", 699.99, 15);
-addItem(9994, "Decal Set", 59.99, 10);
-addItem(9993, "Red Ink Cartridge", 9.99, 50);
-addItem(9992, "Blue Ink Cartridge", 9.99, 50);
-addItem(9991, "Flathead Screwdriver", 4.99, 100);
 
 </script>
 
