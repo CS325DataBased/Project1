@@ -41,16 +41,21 @@ var displayRow = function (id, name, price, quantity) {
     document.getElementById('selected-row-name').innerHTML = name;
     document.getElementById('selected-row-id').innerHTML = "#" + formatNumber(id);
     document.getElementById('selected-row-delete-button').onclick = function(){deleteRow(id)};
-    document.getElementById('selected-row-quantity').innerHTML = quantity;
-    document.getElementById('selected-row-price').innerHTML = "$" + price;
 
+if (quantity){
+document.getElementById('selected-row-quantity').innerHTML = quantity;
+}
+
+if (price) {
+document.getElementById('selected-row-price').innerHTML = "$" + price;
+}
 };
 
 var itemBody = document.getElementById('itemBody');
 
 // Define the deleteRow function
 function deleteRow(id) {
-    var row = document.querySelector('td[data-id="' + id + '"]');
+    var row = document.querySelector('td[data-id="' + formatNumber(id) + '"]');
     if (row) {
       row.parentElement.remove();
       document.getElementById('selected-row').style = `width:calc(40% + 30px);
@@ -65,7 +70,7 @@ function deleteRow(id) {
   }
 
 
-var addItem = function (id, name, price, quantity) {
+var addPart = function (id, name, price, quantity) {
   elementHTML = `
     <tr>
       <td onclick="displayRow(${id}, '${name}', ${price}, ${quantity})" data-id="${formatNumber(id)}">${formatNumber(id)}</td>
@@ -85,17 +90,16 @@ var addItem = function (id, name, price, quantity) {
 var addCustomer = function (id, name) {
 
     elementHTML = `
-<tr onclick = "displayRow(`+ id + `, '` + name + `')">
-            <td data-id = `+ formatNumber(id) + ` >` + formatNumber(id) + `</td>
-            <td data-name = "`+ name + `" >` + name + `</td>
-            <td>
-			<button onclick = "" class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i></button>
-			<button onclick = "deleteRow(`+id+`)" class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i></button>
-			</td>
-</tr>
-`;
-
-    itemBody.innerHTML += elementHTML;
+    <tr>
+      <td onclick="displayRow(${id}, '${name}')" data-id="${formatNumber(id)}">${formatNumber(id)}</td>
+      <td onclick="displayRow(${id}, '${name}')" data-name="${name}">${name}</td>
+      <td>
+        <button onclick="editRow(${id})" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
+        <button onclick="deleteRow(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
+      </td>
+    </tr>
+  `;
+  itemBody.innerHTML += elementHTML;
 
 };
 
@@ -116,7 +120,7 @@ var createNewPart = function () {
     } else {
 
         //update the frontend interface
-        addItem(partID, partName.value.toString(), partPrice.value, partQuantity.value);
+        addPart(partID, partName.value.toString(), partPrice.value, partQuantity.value);
 
         UIkit.modal("#part-creation-modal").hide();
 
@@ -125,6 +129,35 @@ var createNewPart = function () {
             partName.value = "New Part";
             partQuantity.value = "";
             partPrice.value = "";
+        }, 1000);
+
+    }
+
+};
+
+
+
+var createNewCustomer = function () {
+
+    var customerName = document.getElementById('customerName');     //get customerName from input box
+    var customerID = generateRandomNumber();                        //generate a random number to be the ID
+
+    //values are empty. don't create the item.
+    if (customerName.value == "") {
+
+        alert("Please fill out all empty fields.");
+        return;
+
+    } else {
+
+        //update the frontend interface
+        addCustomer(customerID, customerName.value.toString());
+
+        UIkit.modal("#customer-creation-modal").hide();
+
+        //now, reset all of the input boxes.
+        setTimeout(function () {
+            customerName.value = "New Customer";
         }, 1000);
 
     }

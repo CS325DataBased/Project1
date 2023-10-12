@@ -26,7 +26,25 @@
 <input class="uk-search-input" type="search" placeholder="Search..." aria-label="Search...">
 </form></li>
 				
-                    <li><button class = "uk-button uk-button-default uk-add-button"><i class="ri-user-add-fill"></i> <span>New Customer</span></button></li>
+                    <li>
+                    <button uk-toggle = "#customer-creation-modal" class = "uk-button uk-button-default uk-add-button"><i class="ri-user-add-fill"></i> <span>New Customer</span></button>
+                    
+                    <div id="customer-creation-modal" uk-modal>
+                        <div class="uk-modal-dialog uk-modal-body">
+                            <h2 class="uk-modal-title">New Customer</h2>
+                            <!--NAME-->
+                            <span>Name</span>
+                            <input id = "customerName" type = "text" placeholder = "New Customer" value = "New Customer"></input>
+                        
+                    <br>
+                    <br>
+                                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                                <button onclick = "createNewCustomer()" class="uk-button uk-button-primary uk-add-button" style = "color:#1a1a1a" type="button"><i style = "font-weight:900" class="ri-check-fill"></i> Add Customer</button>
+                    
+                        </div>
+                    </div> 
+
+                    </li>
 					
                 </ul>
 
@@ -46,8 +64,8 @@
 
 <div id = "selected-row-title" ><h1 id = "selected-row-name">Customer Name</h1><p id = "selected-row-id">#0000</p></div>
 
-<button class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
-<button class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
+<button id = "selected-row-edit-button" class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
+<button id = "selected-row-delete-button" class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
 
 </div>
 
@@ -83,13 +101,7 @@
 
 addCustomer(1, "John Smith");
 addCustomer(2, "Jane Doe");
-addCustomer(3, "Bob Jones");
-addCustomer(4, "Tom Atkins");    
-addCustomer(5, "William Miller");
-addCustomer(6, "Michael Davis");
-addCustomer(7, "Jerry Wilson");
-addCustomer(8, "Tim Anderson");
-addCustomer(9, "Melinda Carter");
+
 
 </script>
 
