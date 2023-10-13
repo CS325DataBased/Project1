@@ -141,7 +141,10 @@ transform:scale(1.05);
 }
 
 tr {
-cursor:pointer!important;    
+cursor:pointer!important; 
+transition: all 0.5s;
+transition-timing-function:cubic-bezier(0.8,0,0,1);
+border-left: 2.5px solid transparent;
 }
 
 th {
@@ -158,3 +161,13 @@ white-space: nowrap;
     opacity: 50%!important;
     pointer-events: none!important;    
 }
+
+.highlight {
+ border:2.5px solid orange;
+ border-bottom:none;
+ border-top:none;
+ border-right:none;
+ background-color: #FFEFD3!important;
+ transition: all 0.5s;
+ transition-timing-function:cubic-bezier(0.8,0,0,1);
+  }
