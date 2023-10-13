@@ -11,7 +11,23 @@
 //       body: ''
 //     });
 // };
-// const { addCustomer } = require('./pageFunctions.js');
+
+var addNewCustomerToDB = function(id,first,last,email,phone) {
+    const url = 'http://localhost:80/addNewCustomerToDB';
+    const response = fetch(url, {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({id:id,first:first,last:last,email:email,phone:phone})
+    });
+};
+var deleteCustomerFromDB = function(id) {
+  const url = 'http://localhost:80/deleteCustomerFromDB';
+  const response = fetch(url, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({id:id})
+  });
+};
 
 document.addEventListener("DOMContentLoaded", function(){
   console.log('hello')
