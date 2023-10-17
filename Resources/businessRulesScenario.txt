@@ -1,0 +1,51 @@
+DataBased
+Garrett Willis
+Matthew MacDevitt
+Logan Bates
+Austin Wroblos
+Chan Mrotzek
+Bridget Acosta
+
+GitHub Project URL: https://github.com/CS325DataBased/Project1
+Last Modified: 10-06-23
+Name for application/system: TypeBased
+
+Description of your application/system/scenario:
+We sell typewriters and refill supplies for typewriters. A customer can visit the website
+and create an account by providing their name, address, shipping address, billing address, and
+credit card information. They can then login and view the catalog. The customer selects the
+items they want to purchase and add them to their cart. They review their order and enter their
+shipping and billing information. They then select a payment method and complete the checkout
+process. Customers can also subscribe to recurring orders for refill supplies by creating a
+subscription template that specifies the items they want to receive and the due date for each
+shipment. Once a customer has created a subscription, the system will automatically create a
+subscription order for each shipment a day before the due date.
+
+The system tracks the status of each shipment and order. Orders can have one of four
+statuses: PENDING, SHIPPED, INVOICED, or RETURNED. Shipments for each line item of an
+order can have one of three statuses: PICK, PACK, or SHIP.
+Authorized users can view and report on order and shipment status. Authorized users
+can view and edit customer information, order history, and catalog information on the customer
+maintenance page and catalog maintenance page.
+
+Questions people might ask within this scenario:
+1. Which customers and how many have subscribed to a recurring order for typewriter
+ribbon in the past 6 months?
+2. What are the items that are most frequently returned for refund from January to March of
+this year?
+3. What items are sold the most by state?
+4. Which is the order status for subscription items that have been purchased?
+5. How many subscriptions do we have and what are they for?
+
+Business Rules:
+1. A customer must create an account before placing an order.
+2. A customer must provide valid shipping and billing information when placing an order.
+3. A customer cannot place an order for more items than are available in the catalog.
+4. A customer must pay for an order before it can be processed.
+5. A subscription must have a due date.
+6. A customer can cancel or suspend their subscription template at any time.
+7. Authorized users can view and edit customer information, order history, and catalog
+information on the customer maintenance page and catalog maintenance page.
+8. A customer cannot create a subscription for an item that is currently out of stock.
+9. A customer cannot cancel a subscription within 24 hours of the next scheduled
+shipment.
