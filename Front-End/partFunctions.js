@@ -35,7 +35,7 @@ var createNewPart = function () {
 
     //update the frontend interface
     addPart(partID, partName.value.toString(), partDescription.value.toString(), partPrice.value, partQuantity.value);
-
+    addNewProductToDB(partID, partName.value.toString(), partDescription.value.toString(), partPrice.value, partQuantity.value);
     UIkit.modal("#part-creation-modal").hide();
 
     //now, reset all of the input boxes.
