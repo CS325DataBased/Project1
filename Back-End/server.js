@@ -60,8 +60,25 @@ app.get('/GetCustomerData', (req, res) => {
     }
   });
 });
+app.get('/GetProductData', (req, res) => {
+  const query = 'select * from customer';
+  con.query(query, function (error, results) {
+    if (error) {
+      console.log(error);
+    } else {
+      // console.log(results);
+      res.json(results);
+    }
+  });
+});
 //Test Queries.
 con.query('CREATE TABLE IF NOT EXISTS `customer` (	`customer_id` INT(11) NOT NULL,	`first_name` VARCHAR(40) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`last_name` VARCHAR(40) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`email` VARCHAR(20) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`phone` VARCHAR(10) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	PRIMARY KEY (`customer_id`) USING BTREE) COLLATE=\'utf8mb4_general_ci\' ENGINE=InnoDB;', function (error, results, fields) {
+  if (error) throw error;
+  // error will be an Error if one occurred during the query
+  // results will contain the results of the query
+  // fields will contain information about the returned results fields (if any)
+});
+con.query('CREATE TABLE IF NOT EXISTS product (product_id int,product_name varchar(50),product_description varchar(100),price decimal(6,2),quantity int,PRIMARY KEY (product_id));', function (error, results, fields) {
   if (error) throw error;
   // error will be an Error if one occurred during the query
   // results will contain the results of the query

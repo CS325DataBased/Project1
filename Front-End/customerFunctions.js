@@ -36,7 +36,7 @@ var createNewCustomer = function () {
 
     //update the frontend interface
     addCustomer(customerID, customerFirstName.value.toString(), customerLastName.value.toString(), customerEmail.value.toString(), customerPhone.value.toString());
-
+    addNewCustomerToDB(customerID, customerFirstName.value.toString(), customerLastName.value.toString(), customerEmail.value.toString(), customerPhone.value.toString());
     UIkit.modal("#customer-creation-modal").hide();
 
     //now, reset all of the input boxes.
