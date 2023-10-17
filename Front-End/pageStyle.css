@@ -12,6 +12,14 @@ p, h1, h2, h3, h4, h5, h6, a, span, link, ul, li {
 font-family: 'Prompt', sans-serif!important;
 }
 
+#itemBody {
+font-size:15px;    
+}
+
+.uk-button {
+padding:0px 20px!important;    
+}
+
 button, #selected-row p, input {
 border-radius:5px!important;    
 }
@@ -58,7 +66,7 @@ text-transform:none!important;
 }
 
 #selected-row {
-width:calc(40% + 30px);
+width:calc(30% + 30px);
 background-color:#f8f8f8;
 opacity:0%;
 transition: all 0.5s, transform 0.25s;
@@ -67,11 +75,26 @@ transform-origin: top left;
 transition-timing-function:cubic-bezier(0.8,0,0,1);
 }
 
+td[data-description] {
+    white-space: nowrap;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;    
+}
+
+#selected-row-description {
+    background-color: transparent!important;
+    color: #666!important;
+    margin: 0px!important;
+    padding: 0px!important;
+}
+
 #row-selection {
     overflow-y: auto;
     overflow-x: hidden;
     height: calc(100% - 70px);
-    width: calc(60% - 30px);
+    width: calc(70% - 30px);
     padding-left: 0px;
 }
 

@@ -37,6 +37,10 @@
         <span>Name</span>
         <input id = "partName" type = "text" placeholder = "New Part" value = "New Part"></input>
         <br>
+        <!--DESCRIPTION-->
+        <span>Description</span>
+        <input id = "partDescription" type = "text" placeholder = "Description" value = "This is a part."></input>
+        <br>
         <span>Quantity</span>
         <!--QUANTITY-->
         <input id = "partQuantity" type="number" placeholder = "----" class="input-4-numbers" maxlength="4">
@@ -63,6 +67,10 @@
         <span>Name</span>
         <input id = "editPartName" type = "text" placeholder = "New Part" value = "New Part"></input>
         <br>
+<!--EDIT DESCRIPTION-->
+<span>Description</span>
+<input id = "editPartDescription" type = "text" placeholder = "Description" value = "This is a new part."></input>
+<br>        
         <span>Quantity</span>
         <!--EDIT QUANTITY-->
         <input id = "editPartQuantity" type="number" placeholder = "----" class="input-4-numbers" maxlength="4">
@@ -97,6 +105,8 @@
 <div class = "uk-padding" style = "padding:30px;" > 
 
 <div id = "selected-row-title" ><h1 id = "selected-row-name">Part Name</h1><p id = "selected-row-id">#0000</p></div>
+<h3><p id = "selected-row-description" >This is a part.</p></h3>
+<hr>
 <h3>Price:<p id = "selected-row-price" >$123</p></h3>
 <hr>
 <h3>Quantity:<p id = "selected-row-quantity">456</p></h3>
@@ -117,6 +127,7 @@
         <tr id = "row-selection-table-header">
             <th><i class="ri-hashtag"></i>                  <span>ID</span>      </th>
             <th><i class="ri-price-tag-3-fill"></i>         <span>Name</span>    </th>
+            <th><i style = "font-weight:900" class="ri-quote-text" ></i>         <span>Description</span>    </th>            
             <th><i class="ri-numbers-fill"></i>             <span>Quantity</span></th>
             <th><i class="ri-money-dollar-circle-fill"></i> <span>Price</span>   </th>
             <th><i class="ri-bubble-chart-fill"></i>        <span>Actions</span> </th>
@@ -135,12 +146,13 @@
 </body>
 
 <script src = "pageFunctions.js"></script>
+<script src = "partFunctions.js"></script>
 
 <script>
 
-addPart(9999, "Typewriter", 1199.99, 10);
-addPart(9998, "Ink Ribbon", 59.99, 20);
-addPart(9997, "F Key", 2.99, 60);
+addPart(9999, "Typewriter", "This is a typewriter.", 1199.99, 10);
+addPart(9998, "Ink Ribbon", "This is an ink ribbon.", 59.99, 20);
+addPart(9997, "F Key", "This is a key.", 2.99, 60);
 
 </script>
 
