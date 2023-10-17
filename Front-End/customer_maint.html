@@ -34,8 +34,17 @@
                         <div class="uk-modal-dialog uk-modal-body">
                             <h2 class="uk-modal-title">New Customer</h2>
                             <!--NAME-->
-                            <span>Name</span>
-                            <input id = "customerName" type = "text" placeholder = "New Customer" value = "New Customer"></input>
+                            <span>First Name</span>
+                            <input id = "customerFirstName" type = "text" placeholder = "John" value = """></input>
+                            <br>
+                            <span>Last Name</span>
+                            <input id = "customerLastName" type = "text" placeholder = "Smith" value = """></input> 
+                            <br>
+                            <span>Email</span>
+                            <input id = "customerEmail" type = "email" placeholder = "email@address.com" value = ""></input>
+                            <br>
+                            <span>Phone</span>
+                            <input id = "customerPhone" type = "tel" placeholder = "(XXX)-XXX-XXXX" value = ""></input>                            
                         
                     <br>
                     <br>
@@ -53,9 +62,18 @@
                             <input id = "editCustomerID" type = "text" placeholder = "XXXX" value = ""></input>
                             <br>
                             <!--EDIT NAME-->
-                            <span>Name</span>
-                            <input id = "editCustomerName" type = "text" placeholder = "New Customer" value = "New Customer"></input>
-
+                            <span>First Name</span>
+                            <input id = "editCustomerFirstName" type = "text" placeholder = "John" value = """></input>
+                            <br>
+                            <span>Last Name</span>
+                            <input id = "editCustomerLastName" type = "text" placeholder = "Smith" value = """></input> 
+                            <br>
+                            <span>Email</span>
+                            <input id = "editCustomerEmail" type = "email" placeholder = "email@address.com" value = ""></input>
+                            <br>
+                            <span>Phone</span>
+                            <input id = "editCustomerPhone" type = "tel" placeholder = "(XXX)-XXX-XXXX" value = ""></input>                            
+                        
                     <br>
                     <br>
                                 <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
@@ -82,7 +100,16 @@
 
 <div class = "uk-padding" style = "padding:30px;" > 
 
-<div id = "selected-row-title" ><h1 id = "selected-row-name">Customer Name</h1><p id = "selected-row-id">#0000</p></div>
+<div id = "selected-row-title" >
+<h1 id = "selected-row-name">Customer Name</h1>
+<p id = "selected-row-id">#0000</p>
+
+<h3>Email:<p id = "selected-row-email" >email@address.com</p></h3>
+<hr>
+<h3>Phone:<p id = "selected-row-phone">(XXX)-XXX-XXXX</p></h3>
+<br>
+
+</div>
 
 <button id = "selected-row-edit-button" class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
 <button id = "selected-row-delete-button" class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
@@ -99,7 +126,9 @@
         <tr id = "row-selection-table-header">
             <th><i class="ri-hashtag"></i>           <span>ID</span>      </th>
             <th><i class="ri-price-tag-3-fill"></i>  <span>Name</span>    </th>
-            <th><i class="ri-bubble-chart-fill"></i> <span>Actions</span> </th>
+            <th><i class="ri-mail-fill"></i>         <span>Email</span>   </th>
+            <th><i class="ri-phone-fill"></i>        <span>Phone</span>   </th>     
+            <th><i class="ri-bubble-chart-fill"></i> <span>Actions</span> </th>                               
         </tr>
     </thead>
     <tbody id = "itemBody">
@@ -116,11 +145,12 @@
 </body>
 
 <script src = "pageFunctions.js"></script>
+<script src = "customerFunctions.js"></script>
 
 <script>
 
-addCustomer(1, "John Smith");
-addCustomer(2, "Jane Doe");
+addCustomer(1, "John", "Smith", "jsmith@gmail.com", "(123)-456-7890");
+addCustomer(2, "Jane", "Doe", "jdoe@gmail.com", "(805)-867-5309" );
 
 
 </script>
