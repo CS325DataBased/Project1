@@ -1,5 +1,5 @@
 //Imports.
-import express from 'express';
+import express, { json } from 'express';
 import * as fs from 'fs';
 import mysql from 'mysql';
 
@@ -22,45 +22,66 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
+//Defining Add Customer Post Request.
+app.post('/addNewCustomerToDB', (req, res) => {
+  // console.log(req.body.first);
+  con.query('insert into customer SET customer_id = ?, first_name = ?, last_name = ?,email = ?, phone = ?',[req.body.id,req.body.first,req.body.last,req.body.email,req.body.phone],function (error, results, fields) {
+    if (error) {
+      console.log(error);
+    };
+    // error will be an Error if one occurred during the query
+    // results will contain the results of the query
+    // fields will contain information about the returned results fields (if any)
+  });
+});
+
+//Defining Add Customer Post Request.
+app.post('/deleteCustomerFromDB', (req, res) => {
+  // console.log(req.body.first);
+  con.query('delete from customer where customer_id = ?',[req.body.id],function (error, results, fields) {
+    if (error) {
+      console.log(error);
+    };
+    // error will be an Error if one occurred during the query
+    // results will contain the results of the query
+    // fields will contain information about the returned results fields (if any)
+  });
+});
+
 //Defining Test Post Request.
-app.post('/test', (req, res) => {
-  const query = 'select * from test';
+app.get('/GetCustomerData', (req, res) => {
+  const query = 'select * from customer';
   con.query(query, function (error, results) {
     if (error) {
       console.log(error);
     } else {
-      console.log(results);
+      // console.log(results);
+      res.json(results);
     }
   });
 });
-
 //Test Queries.
-con.query('DROP TABLE IF EXISTS test', function (error, results, fields) {
+con.query('CREATE TABLE IF NOT EXISTS `customer` (	`customer_id` INT(11) NOT NULL,	`first_name` VARCHAR(40) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`last_name` VARCHAR(40) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`email` VARCHAR(20) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`phone` VARCHAR(10) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	PRIMARY KEY (`customer_id`) USING BTREE) COLLATE=\'utf8mb4_general_ci\' ENGINE=InnoDB;', function (error, results, fields) {
   if (error) throw error;
   // error will be an Error if one occurred during the query
   // results will contain the results of the query
   // fields will contain information about the returned results fields (if any)
 });
 //Test Queries.
-con.query('CREATE TABLE test (first VARCHAR(255), last VARCHAR(255))', function (error, results, fields) {
-  if (error) throw error;
-  // error will be an Error if one occurred during the query
-  // results will contain the results of the query
-  // fields will contain information about the returned results fields (if any)
-});
-//Test Queries.
-con.query('insert into test SET first = ?, last = ?',['Austin','Wroblos'],function (error, results, fields) {
-  if (error) throw error;
-  //console.log(error)
-  // error will be an Error if one occurred during the query
-  // results will contain the results of the query
-  // fields will contain information about the returned results fields (if any)
-});
+// con.query('insert into customer SET customer_id = ?, first_name = ?, last_name = ?,email = ?, phone = ?',[1234,'Austin','Wroblos','acw128@humboldt.edu',123456789],function (error, results, fields) {
+//   if (error) {
+//     console.log(error);
+//   };
+//   //console.log(error)
+//   // error will be an Error if one occurred during the query
+//   // results will contain the results of the query
+//   // fields will contain information about the returned results fields (if any)
+// });
 
 //Set server port.
 const port = 80
 //Write html file to web page.
-fs.readFile ('../Front-End/customer_maint.html', function(error,html)  {
+fs.readFile ('../Front-End/index.html', function(error,html)  {
     if (error) throw error;
     app.get('/', (req, response) => {
         response.writeHeader(200, {"Content-Type": "text/html"});
