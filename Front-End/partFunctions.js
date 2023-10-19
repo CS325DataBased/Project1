@@ -10,7 +10,7 @@ var addPart = function (id, name, description, price, quantity) {
       <td onclick="displayPartRow(${id}, '${name}', '${description}', ${price}, ${quantity})" data-price="${price}">$${price}</td>
       <td>
         <button onclick="editPart(${id}, '${name}', '${description}', ${price}, ${quantity})" uk-toggle = "#part-edit-modal" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
-        <button onclick="deleteRow(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
+        <button onclick="deleteRow(${id});deleteProductFromDB(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
       </td>
     </tr>
   `;
@@ -35,7 +35,7 @@ var createNewPart = function () {
 
     //update the frontend interface
     addPart(partID, partName.value.toString(), partDescription.value.toString(), partPrice.value, partQuantity.value);
-
+    addNewProductToDB(partID, partName.value.toString(), partDescription.value.toString(), partPrice.value, partQuantity.value);
     UIkit.modal("#part-creation-modal").hide();
 
     //now, reset all of the input boxes.
@@ -86,7 +86,7 @@ var editPart = function(id, name, description, price, quantity){
       <td onclick="displayPartRow(${id}, '${name}', '${description}', ${price}, ${quantity})" data-price="${price}">$${price}</td>
       <td>
       <button onclick="editPart(${id}, '${name}', '${description}', ${price}, ${quantity})" uk-toggle = "#part-edit-modal" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
-      <button onclick="deleteRow(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
+      <button onclick="deleteRow(${id});deleteProductFromDB(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
       </td>
     
       `;
@@ -121,9 +121,9 @@ var displayPartRow = function (id, name, description, price, quantity) {
   // id
   document.getElementById('selected-row-id').innerHTML = "#" + formatNumber(id);
 
-  document.getElementById('selected-row-delete-button').onclick = function () { deleteRow(id) };
+  document.getElementById('selected-row-delete-button').onclick = function () { deleteRow(id);deleteProductFromDB(id);};
   document.getElementById('selected-row-edit-button').onclick = function () {
-editPart(id,name,description,price,quantity);
+    editPart(id,name,description,price,quantity);
 
   };
 
