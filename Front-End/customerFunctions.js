@@ -10,7 +10,7 @@ var addCustomer = function (id, firstName, lastName, email, phone) {
      
       <td>
         <button onclick="editCustomer(${id}, '${firstName}','${lastName}', '${email}', '${phone}')" uk-toggle = "#customer-edit-modal" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
-        <button onclick="deleteRow(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
+        <button onclick="deleteRow(${id});deleteCustomerFromDB(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
       </td>
     </tr>
   `;
@@ -87,7 +87,7 @@ var editCustomerValues = function(id, firstName, lastName, email, phone) {
     <td onclick="displayCustomerRow(${id}, '${firstName}','${lastName}', '${email}', '${phone}')" data-phone="${phone}">${phone}</td>
     <td>
       <button onclick="editCustomer(${id}, '${firstName}','${lastName}', '${email}', '${phone}')" uk-toggle = "#customer-edit-modal" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
-      <button onclick="deleteRow(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
+      <button onclick="deleteRow(${id});deleteCustomerFromDB(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
     </td>
       `;
   
@@ -119,7 +119,7 @@ var displayCustomerRow = function (id, firstName, lastName, email, phone) {
   document.getElementById('selected-row-email').innerHTML = email;
   document.getElementById('selected-row-phone').innerHTML = phone;
 
-  document.getElementById('selected-row-delete-button').onclick = function () { deleteRow(id) };
+  document.getElementById('selected-row-delete-button').onclick = function () { deleteRow(id);deleteCustomerFromDB(id)};
   document.getElementById('selected-row-edit-button').onclick = function () {
 editCustomerValues(id, firstName, lastName, email, phone);
   };

@@ -61,7 +61,7 @@ app.get('/GetCustomerData', (req, res) => {
   });
 });
 app.get('/GetProductData', (req, res) => {
-  const query = 'select * from customer';
+  const query = 'select * from product';
   con.query(query, function (error, results) {
     if (error) {
       console.log(error);
@@ -69,6 +69,32 @@ app.get('/GetProductData', (req, res) => {
       // console.log(results);
       res.json(results);
     }
+  });
+});
+
+//Defining Add Product Post Request.
+app.post('/addNewProductToDB', (req, res) => {
+  // console.log(req.body.first);
+  con.query('insert into product SET product_id = ?, product_name = ?, product_description = ?,price = ?, quantity = ?',[req.body.id,req.body.name,req.body.desc,req.body.price,req.body.quantity],function (error, results, fields) {
+    if (error) {
+      console.log(error);
+    };
+    // error will be an Error if one occurred during the query
+    // results will contain the results of the query
+    // fields will contain information about the returned results fields (if any)
+  });
+});
+
+//Defining remove Product Post Request.
+app.post('/deleteProductFromDB', (req, res) => {
+  // console.log(req.body.first);
+  con.query('delete from product where product_id = ?',[req.body.id],function (error, results, fields) {
+    if (error) {
+      console.log(error);
+    };
+    // error will be an Error if one occurred during the query
+    // results will contain the results of the query
+    // fields will contain information about the returned results fields (if any)
   });
 });
 //Test Queries.

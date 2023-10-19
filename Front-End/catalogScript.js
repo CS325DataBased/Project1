@@ -22,6 +22,7 @@ var addNewProductToDB = function(id,name,desc,price,quantity) {
 };
 var deleteProductFromDB = function(id) {
   const url = 'http://localhost:80/deleteProductFromDB';
+  console.log('here')
   const response = fetch(url, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
@@ -49,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function(){
     // the text, and we copy it into the `poemDisplay` box.
     .then((json) => {
       for(let i =0;i < json.length;i++) {
-        addPart(json[i].product_id,json[i].product_name, json[i].price,json[i].quantity);
+        console.log()
+          addPart(json[i].product_id,json[i].product_name,json[i].product_description ,json[i].price,json[i].quantity);
       }
     });
 });

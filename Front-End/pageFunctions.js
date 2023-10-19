@@ -35,7 +35,6 @@ function deleteRow(id) {
   console.log(id);
   var row = document.querySelector('td[data-id="' + formatNumber(id) + '"]');
   if (row) {
-    deleteCustomerFromDB(id);
     row.parentElement.remove();
     document.getElementById('selected-row').style = `width:calc(30% + 30px);
       background-color:#f8f8f8;
