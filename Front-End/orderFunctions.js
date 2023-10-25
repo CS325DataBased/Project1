@@ -201,6 +201,8 @@ var editOrder = function (id, orderStatus, date, customerName, items) {
 
     document.getElementById('selected-row-delete-button').onclick = function () { deleteRow(id) };
     document.getElementById('selected-row-edit-button').onclick = function () {
+      UIkit.modal("#order-edit-modal").show();
+      
       editOrder(id, orderStatus, date, customerName, items);
 
     };

@@ -50,8 +50,6 @@ var createNewPart = function () {
 };
 
 var editPart = function(id, name, description, price, quantity){
-
-  UIkit.modal("#part-edit-modal").show();
   
   document.getElementById('editPartID').value = formatNumber(id);
   document.getElementById('editPartName').value = name;
@@ -123,6 +121,7 @@ var displayPartRow = function (id, name, description, price, quantity) {
 
   document.getElementById('selected-row-delete-button').onclick = function () { deleteRow(id) };
   document.getElementById('selected-row-edit-button').onclick = function () {
+UIkit.modal("#part-edit-modal").show();
 editPart(id,name,description,price,quantity);
 
   };
