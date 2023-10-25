@@ -45,6 +45,7 @@ input4Elements.forEach(input => {
 
 // Define the deleteRow function
 function deleteRow(id) {
+  console.log(id);
   var row = document.querySelector('td[data-id="' + formatNumber(id) + '"]');
   if (row) {
     row.parentElement.remove();
