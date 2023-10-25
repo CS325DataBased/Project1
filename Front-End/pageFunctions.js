@@ -4,6 +4,19 @@ var nameArray = [];
 var priceArray = [];
 var quantityArray = [];
 
+function convertSingleDigitToDoubleDigit(dateString) {
+  // Split the date string into three parts.
+  var [year, month, day] = dateString.split('-');
+
+  // Convert single-digit segments to double digits.
+  year = year.padStart(4, '0');
+  month = month.padStart(2, '0');
+  day = day.padStart(2, '0');
+
+  // Join the three parts back together with hyphens in between.
+  return `${year}-${month}-${day}`;
+}
+
 // 4-digit number converter
 function formatNumber(number) {
   return String(number).padStart(4, '0');
