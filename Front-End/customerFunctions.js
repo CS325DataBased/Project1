@@ -53,7 +53,6 @@ var createNewCustomer = function () {
 
 var editCustomer = function(id, firstName, lastName, email, phone){
 
-  UIkit.modal("#customer-edit-modal").show();
 
   document.getElementById('editCustomerID').value = formatNumber(id);;
   document.getElementById('editCustomerFirstName').value = firstName;
@@ -121,7 +120,9 @@ var displayCustomerRow = function (id, firstName, lastName, email, phone) {
 
   document.getElementById('selected-row-delete-button').onclick = function () { deleteRow(id);deleteCustomerFromDB(id)};
   document.getElementById('selected-row-edit-button').onclick = function () {
-editCustomerValues(id, firstName, lastName, email, phone);
+    
+UIkit.modal("#customer-edit-modal").show();
+editCustomer(id, firstName, lastName, email, phone);
   };
 
 

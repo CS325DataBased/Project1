@@ -1,0 +1,211 @@
+<html>
+
+<link rel="shortcut icon" href="favi.png">
+<title>Order Maintenance</title>
+<link href = "pageStyle.css" rel = "stylesheet" />
+<link href = "uikit/uikit.min.css" rel = "stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap" rel="stylesheet">
+<link href="remixicon/remixicon.css" rel="stylesheet">
+<script src = "uikit/uikit.min.js" ></script>
+<script src = "uikit/uikit-icons.min.js" ></script>
+
+<body>
+
+<nav class="uk-navbar-container">
+    <div class="uk-container" style = "padding-left:0px" >
+        <div uk-navbar>
+
+            <div class="uk-navbar-left">
+
+                <ul class="uk-navbar-nav">
+
+                    <i style = "font-size:20px;cursor:pointer" class="ri-menu-fill"></i>
+                    
+				<li><form class="uk-search uk-search-default">
+<input id = "search-input" class="uk-search-input" type="search" placeholder="Search..." aria-label="Search...">
+</form></li>
+				
+                    <li>
+                    <button  uk-toggle="target: #order-creation-modal" class = "uk-button uk-button-default uk-add-button"><i style = "font-weight:900" class="ri-add-fill"></i> <span>New Order</span></button>
+
+<div id="order-creation-modal" uk-modal>
+    <div id = "order-creation-modal-body" class="uk-modal-dialog uk-modal-body">
+        <div class = "uk-column-1-2 uk-column-divider">
+            <div style = "display:block">
+        <h2 class="uk-modal-title">New Order</h2>
+        <!--Status-->
+        <span>Status</span>
+        <select id = "orderStatus" class = "modal-input">
+            <option value="">Select...</option>
+            <option value="Pending">Pending</option>
+            <option value="Shipped">Shipped</option>
+            <option value="Returned">Returned</option>
+        </select>
+        <br>
+        <!--Date-->
+        <span>Date</span>
+        <input id="orderDate" type="date" >
+        <br>
+        <span>Customer</span>
+        <!--Customer Name-->
+        <input id = "orderCustomerName" type = "text" placeholder = "Customer Name" >
+     
+</div>
+ <div style = "display:block">
+
+        <h4 style = "margin-top:0px">Order Contents</h4>
+        <span>Part Name</span>
+        <input id = "orderPartName" type = "text" placeholder = "New Part" >
+        <br>
+        <span>Part Quantity</span>
+        <input id = "orderPartQuantity" type="number" placeholder = "----" class="input-4-numbers" maxlength="4">
+        <br>
+        <button onclick = "addPartToOrder()" id = "orderAddPartButton" class = "uk-button uk-add-button"> <i style = "font-weight:900" class="ri-add-fill"></i> Add item</button>
+        <div id = "orderPartList">
+        </div>
+        </div>
+        </div>
+<br>        
+<br>
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button onclick = "createNewOrder()" class="uk-button uk-button-primary uk-add-button" style = "color:#1a1a1a" type="button"><i style = "font-weight:900" class="ri-check-fill"></i> Add Order</button>
+
+    </div>
+</div>
+
+<div id="order-edit-modal" uk-modal>
+    <div id = "order-creation-modal-body" class="uk-modal-dialog uk-modal-body">
+        <div class = "uk-column-1-2 uk-column-divider">
+            <div style = "display:block">
+                <h2 class="uk-modal-title">Edit Order</h2>
+                <!--ID-->
+                <span style = "display:none" >ID</span>
+                <input style = "display:none" id = "editOrderID" type = "text" placeholder = "XXXX" value = ""></input>
+                
+                <!--Status-->
+                <span>Status</span>
+                <select id = "editOrderStatus" class = "modal-input">
+                    <option value="">Select...</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="Returned">Returned</option>
+                </select>
+                <br>
+                <!--Date-->
+                <span>Date</span>
+                <input id="editOrderDate" type="date" >
+                <br>
+                <span>Customer</span>
+                <!--Customer Name-->
+                <input id = "editCustomerName" type = "text" placeholder = "Customer Name" >
+            </div>
+            <div style = "display:block">
+                <h4 style = "margin-top:0px">Order Contents</h4>
+                <span>Part Name</span>
+                <input id = "editOrderPartName" type = "text" placeholder = "New Part" >
+                <br>
+                <span>Part Quantity</span>
+                <input id = "editOrderPartQuantity" type="number" placeholder = "----" class="input-4-numbers" maxlength="4">
+                <br>
+                <button onclick = "editPartToOrder()" id = "editOrderAddPartButton" class = "uk-button uk-add-button"> <i style = "font-weight:900" class="ri-add-fill"></i> Add item</button>
+                <div id = "editOrderPartList">
+                </div>
+            </div>
+        </div>
+        <br>        
+        <br>
+        <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+        <button id = "editOrderButton" onclick = "editOrder()" class="uk-button uk-button-primary uk-add-button" style = "color:#1a1a1a" type="button"><i style = "font-weight:900" class="ri-check-fill"></i> Save Edits</button>
+    </div>
+</div>
+
+</li>
+					
+                </ul>
+
+            </div>
+			
+			
+
+        </div>
+    </div>
+</nav>
+
+<div class = "uk-container uk-child-width-1-2 uk-grid" style = "height:100%" >
+
+<div id = "selected-row" >
+
+<div class = "uk-padding" style = "padding:30px;" > 
+
+<div id = "selected-row-title" ><h1 id = "selected-row-id">Order Name</h1></div>
+<h3>Ordered:<p id = "selected-row-date" >$123</p></h3>
+<hr>
+<h3>Status:<p id = "selected-row-orderStatus">#0000</p><h3>
+<hr>
+<h3>Customer:<p id = "selected-row-customerName" >$123</p></h3>
+<br>
+
+<div id = "selected-row-item-list" >
+</div>
+
+<button id = "selected-row-edit-button" class = "uk-button uk-button-default uk-edit-button" ><i class="ri-pencil-fill"></i> Edit</button>
+<button id = "selected-row-delete-button" class = "uk-button uk-button-default uk-delete-button" ><i class="ri-delete-bin-fill"></i> Delete</button>
+
+</div>
+
+</div>
+
+<div id = "row-selection">
+
+
+<table class="uk-table uk-table-striped">
+    <thead>
+        <tr id = "row-selection-table-header">
+            <th><i class="ri-hashtag"></i>                  <span>ID</span>      </th>
+            <th><i class="ri-line-chart-fill"></i>          <span>Status</span>    </th>
+            <th><i class="ri-calendar-fill"></i>            <span>Date</span>      </th>
+            <th><i class="ri-user-5-fill"></i>              <span>Customer</span>  </th>
+            <th><i class="ri-bubble-chart-fill"></i>        <span>Actions</span> </th>
+        </tr>
+    </thead>
+    <tbody id = "itemBody">
+    </tbody>
+</table>
+
+
+
+</div>
+
+</div>
+
+</body>
+
+<script src = "pageFunctions.js"></script>
+<script src = "orderFunctions.js"></script>
+
+<script>
+
+addOrder(1234, "Pending", "2023-9-15", 'John Doe', 
+    items = [
+    { id: 9999, name: 'Typewriter', quantity: 1 },
+    { id: 9998, name: 'Ink Ribbon', quantity: 1 },
+    { id: 9997, name: 'F Key',      quantity: 4 }
+]);
+
+addOrder(1235, "Shipped", "2023-9-17", 'Bob Johnson',
+    items = [
+    { id: 9999, name: 'Red Ink', quantity: 1 },
+    { id: 9997, name: 'B Key',      quantity: 2 }
+]);
+
+addOrder(1236, "Returned", "2023-8-21", 'Michael Smith',
+    items = [
+    { id: 9999, name: 'F Key', quantity: 2 }
+]);
+
+</script>
+
+</html>
+
