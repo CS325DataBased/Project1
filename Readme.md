@@ -4,7 +4,8 @@
 <img width="400" alt="Screenshot 2023-10-13 at 1 36 16 PM" src="https://github.com/CS325DataBased/Project1/assets/79497735/e30fe993-c39d-4fa6-ab1a-b6132db4dc7e">
 </p>
 
-![DataBased Project](https://github.com/CS325DataBased/Project1/assets/122920316/c5396e85-36ae-4905-9984-6488531b11c7)
+[Er_Diagram_ (1).pdf](https://github.com/CS325DataBased/Project1/files/13254140/Er_Diagram_.1.pdf)
+
 
 
 **Project Server Setup**
