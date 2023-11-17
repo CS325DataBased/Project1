@@ -107,4 +107,49 @@ CREATE TABLE shipment (
   PRIMARY KEY (ship_id),
   FOREIGN KEY (one_time_order_id) REFERENCES one_time_order(one_time_order_id)
 );
+-- Insert statements for customer table
+INSERT INTO customer (cust_id, cust_fname, cust_lname, email, cust_phone)
+VALUES ('0001', 'J', 'Doe', 'john.doe@example.com', '1234567890');
+
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('O001', 'C001', '2022-01-01', 100, 0.1);
+
+-- Insert statements for subscription_order table
+INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
+VALUES ('SO001', 1, 'O001');
+
+-- Insert statements for subscription_shipment table
+INSERT INTO subscription_shipment (sub_ship_id, ship_status, sub_period, sub_date, ship_date)
+VALUES ('SS001', 'Shipped', 'Monthly', '2022-01-01', '2022-01-02');
+
+-- Insert statements for credit_card_info table
+INSERT INTO credit_card_info (cust_id, card_number, expiration_date, CVV)
+VALUES ('C001', '1234567890123456', '2023-01-01', '123');
+
+-- Insert statements for one_time_order table
+INSERT INTO one_time_order (one_time_order_id)
+VALUES ('OTO001');
+
+-- Insert statements for product table
+INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
+VALUES ('P001', 'Product 1', 'Description 1', 10.99, 100);
+
+-- Insert statements for order_product table
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('O001', 'P001', 2);
+
+-- Insert statements for address table
+INSERT INTO address (address_id, address_type, street_address, city, state, postal_code, cust_id)
+VALUES ('A001', 'Billing', '123 Main St', 'City', 'ST', '12345', 'C001');
+
+-- Insert statements for account table
+INSERT INTO account (user_account_id, username, password)
+VALUES ('U001', 'johndoe', 'password');
+
+-- Insert statements for shipment table
+INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
+VALUES ('S001', 'Shipped', 'OTO001');
+
+
 
