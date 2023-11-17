@@ -1,0 +1,33 @@
+Data based project tables in relation-structure form 
+
+Product(PROD_ID, prod_name, prod_desc, prod_price, prod_quantity)
+
+Subscription_Shipment(SUB_SHIP_ID, ship_status, sub_period, sub_date, Shipment_date)
+	foreign key(sub_ship_id) references subscription_order(sub_order_id)
+
+Customer(CUST_ID, cust_fname, cust_lname, cust_email, cust_phone)
+
+Credit_Card_Info(CREDIT_CARD_ID, Card_number, Expiration_date, CVV, cust_id)
+	Foreign key(cust_id) references Customer
+
+Cust_Order(ORDER_ID, order_date, order_amount, sales_tax, cust_id)
+	foreign key (cust_id) references customer
+
+Order_Product(ORDER_ID, PRODUCT_ID, Quantity)
+	foreign key (Product_ID) references Product,
+	foreign key (Order_ID) references Order 
+
+Address(ADDRESS_ID, Address_type, Street_address, City, State, Postal_code, cust_id)
+	foreign key(cust_id) references Customer 
+
+One_Time_Order(ONE_TIME_ORDER_ID)
+	foreign key (one_time_order_id) references cust_order(order_id)
+
+Account(USER_ACCOUNT_ID, Username, Password)
+	foreign key (user_account_id) references Customer (cust_id)
+
+Shipment(SHIP_ID, ship_status, one_time_order_id)
+	foreign key (one_time_order_id, references one_time_order
+
+Subscription_order( SUB_ORDER_ID, Sub_status,order_id)  
+	foreign key (Order_Id) references cust_order 
