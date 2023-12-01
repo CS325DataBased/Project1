@@ -1,5 +1,5 @@
 // addOrder
-var addOrder = function (id, orderStatus, date, customerName, items) {
+var addOrder = function (id, orderStatus, date, customerName, items, subdate) {
   var itemList = document.createElement('ul');
   var listItem = document.createElement('li');
   listItem.innerHTML = ``;
@@ -25,10 +25,10 @@ var addOrder = function (id, orderStatus, date, customerName, items) {
   console.log(itemsString);
   elementHTML = `
     <tr general-data-type = "row" data-type = "row${formatNumber(id)}" >
-      <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString})" data-id="${formatNumber(id)}">${formatNumber(id)}</td>
-      <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString})" data-status="${orderStatus}"><span class = '${orderStatus}'>${orderStatus}</span></td>
-      <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString})" data-date="${date}">${date}</td>
-      <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString})" data-customerName="${customerName}">${customerName}</td>
+      <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},'${subdate}')" data-id="${formatNumber(id)}">${formatNumber(id)}</td>
+      <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},'${subdate}')" data-status="${orderStatus}"><span class = '${orderStatus}'>${orderStatus}</span></td>
+      <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},'${subdate}')" data-date="${date}">${date}</td>
+      <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},'${subdate}')" data-customerName="${customerName}">${customerName}</td>
       <td>
         <button onclick="editOrder(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString})" uk-toggle="#order-edit-modal" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
         <button onclick="deleteRow(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
@@ -65,7 +65,7 @@ var createNewOrder = function () {
       items.push({ id: id, name: name, quantity: quantity });
     }
 
-    addOrder(formatNumber(id), orderStatus, date, orderCustomerName, items);
+    addOrder(formatNumber(id), orderStatus, date, orderCustomerName, items, "Testing");
     UIkit.modal("#order-creation-modal").hide();
     setTimeout(function () {
       document.getElementById('orderStatus').selectedIndex = 0;
@@ -155,10 +155,10 @@ var editOrder = function (id, orderStatus, date, customerName, items) {
 
     // Update the element's innerHTML with the new values.
     element.innerHTML = `
-       <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString})" data-id='${formatNumber(id)}'>${formatNumber(id)}</td>
-       <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString})" data-orderStatus='${orderStatus}'><span class = '${orderStatus}'>${orderStatus}</span></td>
-       <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString})" data-date='${date}'>${date}</td>
-       <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString})" data-customerName='${customerName}'>${customerName}</td>
+       <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},'${subdate}')" data-id='${formatNumber(id)}'>${formatNumber(id)}</td>
+       <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},'${subdate}')" data-orderStatus='${orderStatus}'><span class = '${orderStatus}'>${orderStatus}</span></td>
+       <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},'${subdate}')" data-date='${date}'>${date}</td>
+       <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},'${subdate}')" data-customerName='${customerName}'>${customerName}</td>
        <td>
        <button onclick="editOrder(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString});" uk-toggle="#order-edit-modal" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
        <button onclick="deleteRow(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
@@ -167,7 +167,7 @@ var editOrder = function (id, orderStatus, date, customerName, items) {
 
     document.getElementById('hidden' + formatNumber(id)).innerHTML = itemList.innerHTML;
 
-    displayOrderRow(id, orderStatus, date, customerName, items);
+    displayOrderRow(id, orderStatus, date, customerName, items, subdate);
     UIkit.modal("#order-edit-modal").hide();
 
     //now, reset all of the input boxes.
@@ -182,7 +182,7 @@ var editOrder = function (id, orderStatus, date, customerName, items) {
 
 
   // display the row a user clicks on
-  var displayOrderRow = function (id, orderStatus, date, customerName, items) {
+  var displayOrderRow = function (id, orderStatus, date, customerName, items, subdate) {
 
     document.getElementById('selected-row').style.backgroundImage = "none";
     document.getElementById('selected-row').style.opacity = "100%";
@@ -193,6 +193,7 @@ var editOrder = function (id, orderStatus, date, customerName, items) {
     document.getElementById('selected-row-orderStatus').className = orderStatus;
     document.getElementById('selected-row-date').innerHTML = date;
     document.getElementById('selected-row-customerName').innerHTML = customerName;
+    document.getElementById('selected-row-subdate').innerHTML = subdate;
 
     document.getElementById('selected-row-item-list').innerHTML = document.getElementById(`hidden${formatNumber(id)}`).innerHTML;
 
