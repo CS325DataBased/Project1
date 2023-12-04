@@ -2,56 +2,72 @@
 
 <link rel="shortcut icon" href="favi.png">
 <title>DATA BASED Product Demo</title>
-<link href = "pageStyle.css" rel = "stylesheet" />
-<link href = "uikit/uikit.min.css" rel = "stylesheet" />
+<link href="pageStyle.css" rel="stylesheet" />
+<link href="uikit/uikit.min.css" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap" rel="stylesheet">
 <link href="remixicon/remixicon.css" rel="stylesheet">
-<script src = "uikit/uikit.min.js" ></script>
-<script src = "uikit/uikit-icons.min.js" ></script>
+<script src="uikit/uikit.min.js"></script>
+<script src="uikit/uikit-icons.min.js"></script>
 
 <style>
+    body {
+        padding: 10px;
+        box-sizing: border-box;
+        white-space: nowrap;
+        text-align: center;
+    }
 
-body {
-padding:10px;
-box-sizing: border-box;
-white-space:nowrap;
-text-align:center;
-}    
+    button {
+        width: calc(33% - 5px);
+        box-sizing: border-box;
+        background-position: center;
+        color: white;
+        font-family: 'Prompt';
+        border: none;
+        background-size: 220%;
+        background-repeat: no-repeat;
+        display: inline-block;
+        height: 100%;
+        font-size: 25px;
+        text-shadow: 2.5px 2.5px 0px black;
+        font-weight: 900;
+        transition: all 0.75s ease-in;
+        transition-timing-function: cubic-bezier(0.8, 0, 0, 1);
+        margin-left: 2.5px;
+        margin-right: 2.5px;
+        padding: 60px;
+        white-space: initial;
+    }
 
-button {
-    background-image: url('https://images.unsplash.com/photo-1579547621706-1a9c79d5c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80');
-    width: calc(50% - 7.5px);
-    box-sizing: border-box;
-    background-position: center;
-    color: white;
-    font-family: 'Prompt';
-    border: none;
-    background-size: 220%;
-    background-repeat:no-repeat;
-    display: inline-block;
-    height: 100%;
-    font-size: 30px;
-    text-shadow: 2.5px 2.5px 0px black;
-    font-weight: 900;  
-    transition: all 0.75s ease-in;
-    transition-timing-function:cubic-bezier(0.8,0,0,1);
-    margin-left:2.5px;
-    margin-right:2.5px;
-}
-
-button:hover {
-text-shadow: 4px 4px 0px black;
-background-size:300%;
-cursor:pointer;    
-}
-
+    button:hover {
+        text-shadow: 4px 4px 0px black;
+        background-size: 300%;
+        cursor: pointer;
+    }
 </style>
 
-<body></body>
+<body>
+    <button onclick="window.location.href = 'customer_maint.html'">Customer Maintenance Demo</button>
+    <button onclick="window.location.href = 'catalog_maint.html'">Catalog Maintenance Demo</button>
+    <button onclick="window.location.href = 'order_maint.html'">Order Maintenance Demo</button>
 
-<button onclick = "window.location.href = 'customer_maint.html'" >Customer Maintenance</button>  
-<button onclick = "window.location.href = 'catalog_maint.html'" style = "background-image:url('https://images.unsplash.com/photo-1554034483-04fda0d3507b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2370&q=80')" >Catalog Maintenance</button>    
+    <script>
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
 
+        var buttons = document.getElementsByTagName('button');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].style.backgroundColor = getRandomColor();
+        }
+    </script>
 </body>
+
+</html>
