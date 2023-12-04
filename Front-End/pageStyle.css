@@ -210,26 +210,42 @@ white-space: nowrap;
   }
 
 
-.pending, .Pending, .PENDING {
+.pending, .Pending, .PENDING, .yearly, .Yearly, .YEARLY {
     background-color: #ffa50050!important;
     color: #666!important;
     padding: 5px 20px!important;
     border-radius: 5px!important;
 }  
 
-.shipped, .Shipped, .SHIPPED {
+.yearly, .Yearly, .YEARLY {
+    background-color: #999!important;
+    color:white!important;
+}
+
+.shipped, .Shipped, .SHIPPED, .weekly, .Weekly, .WEEKLY {
     background-color: #d5ffd5!important;
     color: #666!important;
     padding: 5px 20px!important;
     border-radius: 5px!important;
 }  
 
-.returned, .Returned, .RETURNED {
+.weekly, .Weekly, .WEEKLY {
+    background-color: #999!important;
+    color:white!important;
+}
+
+.returned, .Returned, .RETURNED, .monthly, .Monthly, .MONTHLY {
     background-color: #ff000050!important;
     color: #666!important;
     padding: 5px 20px!important;
     border-radius: 5px!important;
 }  
+
+.monthly, .Monthly, .MONTHLY {
+    background-color: #999!important;
+    color:white!important;
+}
+
 
 #selected-row-item-list {
     max-height: 30%;
@@ -283,7 +299,7 @@ color:#666;
     margin:5px;    
 }
 
-#editOrderPartList, #orderPartList {
+#editOrderPartList, #orderPartList, #editSubscriptionPartList, #subscriptionPartList {
     display: block;
     height: 120px;
     overflow: hidden;
@@ -294,7 +310,7 @@ color:#666;
     position:absolute;
 }
 
-#orderPartList h4, #editOrderPartList h4 {
+#orderPartList h4, #editOrderPartList h4, #subscriptionPartList h4, #editSubscriptionPartList h4 {
     background-color: #e9e9e9;
     width: fit-content;
     padding: 5px;
@@ -304,14 +320,14 @@ color:#666;
     margin: 0px 10px 10px 0px;
 }
 
-#orderPartList span, #editOrderPartList span {
+#orderPartList span, #editOrderPartList span, #subscriptionPartList span, #editSubscriptionPartList span {
     background-color: #f8f8f8;
     padding: 5px;
     border-radius: 5px;
     margin: 2.5px;
 }
 
-#orderPartList button, #editOrderPartList button {
+#orderPartList button, #editOrderPartList button, #subscriptionPartList button, #editSubscriptionPartList button {
     background-color: transparent;
     padding: 5px;
     border-radius: 5px;
@@ -322,24 +338,24 @@ color:#666;
     cursor:pointer;
 }
 
-#order-creation-modal-body, #order-edit-modal-body {
+#order-creation-modal-body, #order-edit-modal-body, #subscription-creation-modal-body, #subscription-edit-modal-body {
     width:100%;
     height:100%;
 }
 
-#orderCardExpiration, #orderCardCVV, #orderAddressState, #editOrderCardExpiration, #editOrderCardCVV, #editOrderAddressState {
+#orderCardExpiration, #orderCardCVV, #orderAddressState, #editOrderCardExpiration, #editOrderCardCVV, #editOrderAddressState, #subscriptionCardExpiration, #subscriptionCardCVV, #subscriptionAddressState, #editSubscriptionCardExpiration, #editSubscriptionCardCVV, #editSubscriptionAddressState {
     width:100px;
     display:inline-block;
 }
 
-#orderAddressCity, #editOrderAddressCity {
+#orderAddressCity, #editOrderAddressCity, #subscriptionAddressCity, #editSubscriptionAddressCity {
     width:150px;
     display:inline-block;
 }
 
 
 
-#orderCardNumber, #orderAddressStreet, #editOrderCardNumber, #editOrderAddressStreet {
+#orderCardNumber, #orderAddressStreet, #editOrderCardNumber, #editOrderAddressStreet, #subscriptionCardNumber, #subscriptionAddressStreet, #editSubscriptionCardNumber, #editSubscriptionAddressStreet {
     display: block;
     margin: 15px;
     margin-left: 0;
@@ -347,7 +363,7 @@ color:#666;
     margin-top: 0;
 }
 
-#orderAddressZip, #editOrderAddressZip {
+#orderAddressZip, #editOrderAddressZip, #subscriptionAddressZip, #editSubscriptionAddressZip {
     display: block;
     margin: 15px;
     margin-left: 0;
@@ -355,7 +371,7 @@ color:#666;
     margin-bottom: 0;
 }
 
-#orderCardExpiration, #orderAddressCity, #editOrderCardExpiration, #editOrderAddressCity {
+#orderCardExpiration, #orderAddressCity, #editOrderCardExpiration, #editOrderAddressCity, #subscriptionCardExpiration, #subscriptionAddressCity, #editSubscriptionCardExpiration, #editSubscriptionAddressCity {
     margin-right:7.5px;
 }
 
@@ -396,18 +412,149 @@ padding:0px!important;
     font-weight:900;
 }
 
-#editOrderPartList, #orderPartList {
+#editOrderPartList, #orderPartList, #editSubscriptionPartList, #subscriptionPartList {
     margin-top:60px;
     width:30%;
     background-color:#FFFFFF;
 }
 
-#editOrderPartList::-webkit-scrollbar, #orderPartList::-webkit-scrollbar {
+#editOrderPartList::-webkit-scrollbar, #orderPartList::-webkit-scrollbar, #editSubscriptionPartList::-webkit-scrollbar, #subscriptionPartList::-webkit-scrollbar {
     width: 5px;
     scrollbar-gutter:stable;
 }
 
-#editOrderPartList::-webkit-scrollbar-thumb, #orderPartList::-webkit-scrollbar-thumb {
+#editOrderPartList::-webkit-scrollbar-thumb, #orderPartList::-webkit-scrollbar-thumb, #editSubscriptionPartList::-webkit-scrollbar-thumb, #subscriptionPartList::-webkit-scrollbar-thumb {
+    background-color: #999;
+    border-radius: 5px;
+    opacity:50%;
+
+}
+
+#editSubscriptionPartList, #subscriptionPartList, #editOrderPartList, #orderPartList {
+    display: block;
+    height: 120px;
+    overflow: hidden;
+    overflow-y: auto;
+    margin: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
+    position:absolute;
+}
+
+#subscriptionPartList h4, #editSubscriptionPartList h4 {
+    background-color: #e9e9e9;
+    width: fit-content;
+    padding: 5px;
+    vertical-align: middle;
+    display: inline-flex;
+    border-radius: 5px;
+    margin: 0px 10px 10px 0px;
+}
+
+#subscriptionPartList span, #editSubscriptionPartList span {
+    background-color: #f8f8f8;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 2.5px;
+}
+
+#subscriptionPartList button, #editSubscriptionPartList button {
+    background-color: transparent;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 2.5px;
+    border: none;
+    color: #666;
+    transform: scale(1.2);
+    cursor:pointer;
+}
+
+#subscription-creation-modal-body, #subscription-edit-modal-body {
+    width:100%;
+    height:100%;
+}
+
+#subscriptionCardExpiration, #subscriptionCardCVV, #subscriptionAddressState, #editSubscriptionCardExpiration, #editSubscriptionCardCVV, #editSubscriptionAddressState {
+    width:100px;
+    display:inline-block;
+}
+
+#subscriptionAddressCity, #editSubscriptionAddressCity {
+    width:150px;
+    display:inline-block;
+}
+
+
+
+#subscriptionCardNumber, #subscriptionAddressStreet, #editSubscriptionCardNumber, #editSubscriptionAddressStreet {
+    display: block;
+    margin: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+}
+
+#subscriptionAddressZip, #editSubscriptionAddressZip {
+    display: block;
+    margin: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+}
+
+#subscriptionCardExpiration, #subscriptionAddressCity, #editSubscriptionCardExpiration, #editSubscriptionAddressCity {
+    margin-right:7.5px;
+}
+
+.hidden-card-display, .hidden-address-display, .hidden-subscriptionStatus-display {
+    display:none;
+}
+
+#selected-row h3 span {
+    font-size: 12px;
+    color: #666;
+    display: block;
+}
+
+.selected-card-div p, .selected-address-div p {
+background-color:transparent!important;
+margin:0px!important;
+padding:0px!important;
+}
+
+.selected-card-innerdiv, .selected-address-innerdiv {
+    display:inline-block;
+    font-size:15px;
+    color:white;
+    background-color:#999;
+    border-radius:5px;
+    padding:5px;
+    margin:0px 0px 0px 15px;
+    vertical-align:middle;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
+    margin-top:5px;
+    margin-bottom: 5px;
+}
+
+
+.selected-card-innerdiv i, .selected-address-innerdiv i {
+    margin-right:5px;
+    font-weight:900;
+}
+
+#editSubscriptionPartList, #subscriptionPartList {
+    margin-top:60px;
+    width:30%;
+    background-color:#FFFFFF;
+}
+
+#editSubscriptionPartList::-webkit-scrollbar, #subscriptionPartList::-webkit-scrollbar {
+    width: 5px;
+    scrollbar-gutter:stable;
+}
+
+#editSubscriptionPartList::-webkit-scrollbar-thumb, #subscriptionPartList::-webkit-scrollbar-thumb {
     background-color: #999;
     border-radius: 5px;
     opacity:50%;

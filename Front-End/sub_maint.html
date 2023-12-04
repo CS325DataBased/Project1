@@ -1,0 +1,368 @@
+<html>
+
+<link rel="shortcut icon" href="favi.png">
+<title>Subscription Maintenance</title>
+<link href="pageStyle.css" rel="stylesheet" />
+<link href="uikit/uikit.min.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@500&display=swap" rel="stylesheet">
+<link href="remixicon/remixicon.css" rel="stylesheet">
+<script src="uikit/uikit.min.js"></script>
+<script src="uikit/uikit-icons.min.js"></script>
+
+<body>
+
+    <nav class="uk-navbar-container">
+        <div class="uk-container" style="padding-left:0px">
+            <div uk-navbar>
+
+                <div class="uk-navbar-left">
+
+                    <ul class="uk-navbar-nav">
+
+                        <i style="font-size:20px;cursor:pointer" class="ri-menu-fill"></i>
+
+                        <li>
+                            <form class="uk-search uk-search-default">
+                                <input id="search-input" class="uk-search-input" type="search" placeholder="Search..."
+                                    aria-label="Search...">
+                            </form>
+                        </li>
+
+                        <li>
+                            <button uk-toggle="target: #subscription-creation-modal"
+                                class="uk-button uk-button-default uk-add-button"><i style="font-weight:900"
+                                    class="ri-add-fill"></i> <span>New Subscription</span></button>
+
+                            <div id="subscription-creation-modal" uk-modal>
+                                <div id="subscription-creation-modal-body" class="uk-modal-dialog uk-modal-body">
+                                    <div class="uk-column-1-3 uk-column-divider" style="height:80%">
+                                        <div style="display:block;height:100%">
+                                            <h2 class="uk-modal-title">New Subscription</h2>
+                                            <!--Status-->
+                                            <span>Status</span>
+                                            <select id="subscriptionStatus" class="modal-input">
+                                                <option value="Pending">Pending</option>
+                                                <option value="Shipped">Shipped</option>
+                                                <option value="Returned">Returned</option>
+                                            </select>
+                                            <br>
+                                            <!--Date-->
+                                            <span>Date</span>
+                                            <input id="subscriptionDate" type="date">
+                                            <br>
+                                            <span>Customer</span>
+                                            <!--Customer Name-->
+                                            <input id="subscriptionCustomerName" type="text"
+                                                placeholder="Customer Name">
+                                            <br>
+                                            <span>Frequency</span>
+                                            <!--Frequency-->
+                                            <select id="subscriptionFrequency" class="modal-input">
+                                                <option value="Weekly">Weekly</option>
+                                                <option value="Monthly">Monthly</option>
+                                                <option value="Yearly">Yearly</option>
+                                            </select>
+
+                                        </div>
+                                        <div style="display:block;height:100%">
+
+                                            <h4 style="margin-top:0px">Subscription Contents</h4>
+                                            <span>Part Name</span>
+                                            <input id="subscriptionPartName" type="text" placeholder="New Part">
+                                            <br>
+                                            <span>Part Quantity</span>
+                                            <input id="subscriptionPartQuantity" type="number" placeholder="----"
+                                                class="input-4-numbers" maxlength="4">
+                                            <br>
+                                            <button onclick="addPartToSubscription()" id="subscriptionAddPartButton"
+                                                class="uk-button uk-add-button"> <i style="font-weight:900"
+                                                    class="ri-add-fill"></i> Add item</button>
+                                            <div id="subscriptionPartList">
+                                            </div>
+                                            <!---->
+                                        </div>
+                                        <div style="display:block;height:100%">
+                                            <!--input user card number, expiration date, cvv-->
+                                            <h4>Shipment Details</h4>
+                                            <span>Payment Information</span>
+                                            <input id="subscriptionCardNumber" type="text" placeholder="Card Number">
+
+                                            <input id="subscriptionCardExpiration" type="text"
+                                                placeholder="Expiration Date">
+                                            <input id="subscriptionCardCVV" type="text" placeholder="CVV">
+                                            <br>
+                                            <br>
+
+                                            <span>Address</span>
+                                            <input id="subscriptionAddressStreet" type="text" placeholder="Street">
+                                            <input id="subscriptionAddressCity" type="text" placeholder="City">
+                                            <input id="subscriptionAddressState" type="text" placeholder="State">
+                                            <input id="subscriptionAddressZip" type="text" placeholder="Zip">
+                                        </div>
+
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <button class="uk-button uk-button-default uk-modal-close"
+                                        type="button">Cancel</button>
+                                    <button onclick="createNewSubscription()"
+                                        class="uk-button uk-button-primary uk-add-button" style="color:#1a1a1a"
+                                        type="button"><i style="font-weight:900" class="ri-check-fill"></i> Add
+                                        Subscription</button>
+
+                                </div>
+                            </div>
+
+                            <div id="subscription-edit-modal" uk-modal>
+                                <div id="subscription-edit-modal-body" class="uk-modal-dialog uk-modal-body">
+                                    <div class="uk-column-1-3 uk-column-divider" style="height:80%">
+                                        <div style="display:block;height:100%">
+                                            <h2 class="uk-modal-title">Edit Subscription</h2>
+                                            <!--ID-->
+                                            <span style="display:none">ID</span>
+                                            <input style="display:none" id="editSubscriptionID" type="text"
+                                                placeholder="XXXX" value=""></input>
+
+                                            <!--Status-->
+                                            <span>Status</span>
+                                            <select id="editSubscriptionStatus" class="modal-input">
+                                                <option value="Pending">Pending</option>
+                                                <option value="Shipped">Shipped</option>
+                                                <option value="Returned">Returned</option>
+                                            </select>
+                                            <br>
+                                            <!--Date-->
+                                            <span>Date</span>
+                                            <input id="editSubscriptionDate" type="date">
+                                            <br>
+                                            <span>Customer</span>
+                                            <!--Customer Name-->
+                                            <input id="editCustomerName" type="text" placeholder="Customer Name">
+                                            <br>
+                                            <span>Frequency</span>
+                                            <!--Frequency-->
+                                            <select id="editSubscriptionFrequency" class="modal-input">
+                                                <option value="Weekly">Weekly</option>
+                                                <option value="Monthly">Monthly</option>
+                                                <option value="Yearly">Yearly</option>
+                                            </select>
+                                            <br>
+                                        </div>
+                                     
+
+                                        <div style="display:block;height:100%">
+                                            <h4 style="margin-top:0px">Edit Subscription Contents</h4>
+                                            <span>Part Name</span>
+                                            <input id="editSubscriptionPartName" type="text" placeholder="New Part">
+                                            <br>
+                                            <span>Part Quantity</span>
+                                            <input id="editSubscriptionPartQuantity" type="number" placeholder="----"
+                                                class="input-4-numbers" maxlength="4">
+                                            <br>
+                                            <button onclick="editPartToSubscription()"
+                                                id="editSubscriptionAddPartButton" class="uk-button uk-add-button">
+                                                <i style="font-weight:900" class="ri-add-fill"></i> Add item</button>
+                                            <div id="editSubscriptionPartList">
+                                            </div>
+                                            <br>
+                                            <br>
+                                        </div>
+                                        <div style="display:block;height:100%">
+                                            <!--input user card number, expiration date, cvv-->
+                                            <h4>Edit Shipment Details</h4>
+                                            <span>Payment Information</span>
+
+                                            <input id="editSubscriptionCardNumber" type="text"
+                                                placeholder="Card Number">
+
+                                            <input id="editSubscriptionCardExpiration" type="text"
+                                                placeholder="Expiration Date">
+                                            <input id="editSubscriptionCardCVV" type="text" placeholder="CVV">
+                                            <br>
+                                            <br>
+
+                                            <span>Address</span>
+                                            <input id="editSubscriptionAddressStreet" type="text" placeholder="Street">
+                                            <input id="editSubscriptionAddressCity" type="text" placeholder="City">
+                                            <input id="editSubscriptionAddressState" type="text" placeholder="State">
+                                            <input id="editSubscriptionAddressZip" type="text" placeholder="Zip">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+                                    <button class="uk-button uk-button-default uk-modal-close"
+                                        type="button">Cancel</button>
+                                    <button id="editSubscriptionButton" onclick="editSubscription()"
+                                        class="uk-button uk-button-primary uk-add-button" style="color:#1a1a1a"
+                                        type="button"><i style="font-weight:900" class="ri-check-fill"></i> Save
+                                        Edits</button>
+                                </div>
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="uk-container uk-child-width-1-2 uk-grid" style="height:100%">
+
+        <div id="selected-row">
+
+            <div class="uk-padding" style="padding:30px;">
+
+                <div id="selected-row-title">
+                    <h1 id="selected-row-id">Subscription Name</h1>
+                </div>
+                <h3>Ordered:<p id="selected-row-date">$123</p>
+                </h3>
+                <hr>
+                <h3>Frequency:<p id="selected-row-frequency">#0000</p>
+                    <h3>
+                        <hr>
+                        <h3>Customer:<p id="selected-row-customerName">$123</p>
+                        </h3>
+                        <hr>
+                        <h3 class="selected-address-div">Shipping Address:
+                            <div class="selected-address-innerdiv">
+                                <i class="ri-git-commit-fill"></i>
+                                <p id="selected-row-addressStreet">$123</p>
+                                <br>
+                                <i class="ri-road-map-fill"></i>
+                                <p id="selected-row-addressCity">$123</p>, <p id="selected-row-addressState">$123</p>
+                                <p id="selected-row-addressZip">$123</p>
+                            </div>
+                        </h3>
+
+                        <hr>
+                        <h3 class="selected-card-div">Payment Info:
+                            <div class="selected-card-innerdiv">
+                                <i class="ri-bank-card-fill"></i>
+                                <p id="selected-row-cardNumber">$123</p>
+                                <br>
+                                <i class="ri-time-line"></i>
+                                <p id="selected-row-cardExpiration">$123</p>
+                                <br>
+                                <i class="ri-asterisk"></i>
+                                <p id="selected-row-cardCVV">$123</p>
+                            </div>
+                            <br>
+                        </h3>
+                        <hr>
+                        <h3>Subscription Status:<p id="selected-row-subscriptionStatus">#0000</p>
+                            <hr>
+                            <h3 style="margin-bottom:5px">Subscription Contents:</h3>
+                            <div id="selected-row-item-list">
+                            </div>
+
+                            <button id="selected-row-edit-button" class="uk-button uk-button-default uk-edit-button"><i
+                                    class="ri-pencil-fill"></i> Edit</button>
+                            <button id="selected-row-delete-button"
+                                class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i>
+                                Delete</button>
+
+            </div>
+
+        </div>
+
+        <div id="row-selection">
+
+
+            <table class="uk-table uk-table-striped">
+                <thead>
+                    <tr id="row-selection-table-header">
+                        <th><i class="ri-hashtag"></i> <span>ID</span> </th>
+                        <th><i class="ri-line-chart-fill"></i> <span>Status</span> </th>
+                        <th><i class="ri-calendar-fill"></i> <span>Date</span> </th>
+                        <th><i class="ri-user-5-fill"></i> <span>Customer</span> </th>
+                        <th><i class="ri-bubble-chart-fill"></i> <span>Actions</span> </th>
+                    </tr>
+                </thead>
+                <tbody id="itemBody">
+                </tbody>
+            </table>
+
+
+
+        </div>
+
+    </div>
+
+</body>
+
+<script src="pageFunctions.js"></script>
+<script src="subscriptionFunctions.js"></script>
+
+<script>
+
+    addSubscription(1234, "Pending", "2023-9-15", 'John Doe',
+        items = [
+            { id: 9999, name: 'Typewriter', quantity: 1 },
+            { id: 9998, name: 'Ink Ribbon', quantity: 1 },
+            { id: 9997, name: 'F Key', quantity: 4 }
+        ],
+        card = {
+            number: 1702045630569245,
+            expirationDate: "08/25",
+            cvv: 246
+        },
+
+        address = {
+            street: "6846 Oak Ln",
+            city: "Augusta",
+            state: "GA",
+            zip: 1130
+        },
+        "Weekly"
+    );
+
+    addSubscription(1235, "Shipped", "2023-9-17", 'Bob Johnson',
+        items = [
+            { id: 9999, name: 'Red Ink', quantity: 1 },
+            { id: 9997, name: 'B Key', quantity: 2 }
+        ],
+        card = {
+            number: 5948349859482045,
+            expirationDate: "09/31",
+            cvv: 335
+        },
+
+        address = {
+            street: "1234 Main St",
+            city: "New York",
+            state: "NY",
+            zip: 12345
+        },
+        "Monthly"
+    );
+
+    addSubscription(1236, "Returned", "2023-8-21", 'Michael Smith',
+        items = [
+            { id: 9999, name: 'F Key', quantity: 2 }
+        ],
+        card = {
+            number: 2947395749572046,
+            expirationDate: "07/32",
+            cvv: 257
+        },
+
+        address = {
+            street: "6667 Wall St",
+            city: "Miami",
+            state: "FL",
+            zip: 99504
+        },
+        "Yearly"
+    );
+
+</script>
+
+</html>

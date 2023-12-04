@@ -24,6 +24,10 @@ var addOrder = function (id, orderStatus, date, customerName, items, card, addre
   itemsString += '\n]';
   console.log(itemsString);
 
+  if (items.length == 0) {
+    itemsString = '[]';
+  }
+
   var cardString = "";
   var addressString = "";
 
@@ -144,7 +148,7 @@ var editOrder = function (id, orderStatus, date, customerName, items, card, addr
   document.getElementById('editOrderID').value = formatNumber(id);
   document.getElementById('editOrderStatus').value = orderStatus;
   document.getElementById('editOrderDate').value = convertSingleDigitToDoubleDigit(date);
-  document.getElementById('editCustomerName').value = customerName;
+  document.getElementById('editOrderCustomerName').value = customerName;
   document.getElementById('editOrderCardNumber').value = card.number;
   document.getElementById('editOrderCardExpiration').value = card.expirationDate;
   document.getElementById('editOrderCardCVV').value = card.cvv;
@@ -175,7 +179,7 @@ var editOrder = function (id, orderStatus, date, customerName, items, card, addr
     var newOrderID = document.getElementById('editOrderID').value;
     var newOrderStatus = document.getElementById('editOrderStatus').value;
     var newOrderDate = document.getElementById('editOrderDate').value;
-    var newCustomerName = document.getElementById('editCustomerName').value;
+    var newCustomerName = document.getElementById('editOrderCustomerName').value;
 
     // get updated items
     var newItems = [];
@@ -188,6 +192,7 @@ var editOrder = function (id, orderStatus, date, customerName, items, card, addr
       newItems.push({ id: id, name: name, quantity: quantity });
     }
 
+  
     // get updated card and address info
     var newCard = {
       number: document.getElementById('editOrderCardNumber').value,
@@ -201,6 +206,7 @@ var editOrder = function (id, orderStatus, date, customerName, items, card, addr
       state: document.getElementById('editOrderAddressState').value,
       zip: document.getElementById('editOrderAddressZip').value
     };
+
 
     editOrderValues(newOrderID, newOrderStatus, newOrderDate, newCustomerName, newItems, newCard, newAddress);
   };
@@ -235,6 +241,9 @@ var editOrderValues = function (id, orderStatus, date, customerName, items, card
   itemsString += '\n]';
   console.log(itemsString);
 
+  if (items.length == 0) {
+    itemsString = '[]';
+  }
 
   var cardString = "";
   var addressString = "";
@@ -256,9 +265,20 @@ var editOrderValues = function (id, orderStatus, date, customerName, items, card
   // Update the element's innerHTML with the new values.
   element.innerHTML = `
        <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString}, ` + cardString + `` + addressString + `)" data-id='${formatNumber(id)}'>${formatNumber(id)}</td>
-       <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString}, ` + cardString + `` + addressString + `)" data-orderStatus='${orderStatus}'><span class = '${orderStatus}'>${orderStatus}</span></td>
+       <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString}, ` + cardString + `` + addressString + `)" data-status='${orderStatus}'><span class = '${orderStatus}'>${orderStatus}</span></td>
        <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString}, ` + cardString + `` + addressString + `)" data-date='${date}'>${date}</td>
        <td onclick="displayOrderRow(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString}, ` + cardString + `` + addressString + `)" data-customerName='${customerName}'>${customerName}</td>
+       <div class = "hidden-card-display">
+       <p>${card.number}</p>
+       <p>${card.expirationDate}</p>
+       <p>${card.CVV}</p>
+       </div>
+       <div class = "hidden-address-display">
+       <p>${address.street}</p>
+       <p>${address.city}</p>
+       <p>${address.state}</p>
+       <p>${address.zip}</p>
+       </div>
        <td>
        <button onclick="editOrder(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},` + cardString + `` + addressString + `)" uk-toggle="#order-edit-modal" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
        <button onclick="deleteRow(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
@@ -275,7 +295,7 @@ var editOrderValues = function (id, orderStatus, date, customerName, items, card
     document.getElementById('editOrderID').value = "";
     document.getElementById('editOrderStatus').value = "";
     document.getElementById('editOrderDate').value = "";
-    document.getElementById('editCustomerName').value = "";
+    document.getElementById('editOrderCustomerName').value = "";
     document.getElementById('editOrderPartList').innerHTML = "";
     document.getElementById('editOrderCardNumber').value = "";
     document.getElementById('editOrderCardExpiration').value = "";
@@ -291,13 +311,15 @@ var editOrderValues = function (id, orderStatus, date, customerName, items, card
 // display the row a user clicks on
 var displayOrderRow = function (id, orderStatus, date, customerName, items, card, address) {
 
+  document.getElementById('subscription-view-only').style.display = "none";
+
   document.getElementById('selected-row').style.backgroundImage = "none";
   document.getElementById('selected-row').style.opacity = "100%";
   document.getElementById('selected-row').style.pointerEvents = "auto";
   document.getElementById('selected-row').style.transform = "scale(1)";
   // name
-  document.getElementById('selected-row-orderStatus').innerHTML = orderStatus;
-  document.getElementById('selected-row-orderStatus').className = orderStatus;
+  document.getElementById('selected-row-status').innerHTML = orderStatus;
+  document.getElementById('selected-row-status').className = orderStatus;
   document.getElementById('selected-row-date').innerHTML = date;
   document.getElementById('selected-row-customerName').innerHTML = customerName;
 
