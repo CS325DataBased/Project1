@@ -1,0 +1,198 @@
+table customer
+====================
+
+CUST CUST_FNAME           CUST_LNAME           EMAIL                CUST_PHONE  
+---- -------------------- -------------------- -------------------- ----------  
+0001 J                    Doe                  john.doe@example.com 1234567890  
+0002 Sammy                Carter               Sam.Cart@example.com 418041841   
+0003 Thomas               Hanks                tom.hanks@gmail.com  3105559797  
+0004 Stephen              King                 s.king@yahoo.com     2075559797  
+0005 Ernest               Hemingway            ernhem@example.com   5551234567  
+0006 Agatha               Christie             aga.chr@hotmail.com  9998765432  
+0007 Jane                 Smith                jane.smith@example.c 9876543210  
+0008 Michael              Berry                michael.berry@exampl 4363876344  
+0009 Joey                 Connors              joey.connors@example 3439094578  
+0010 William              Afton                william.afton@ffpizz 0349283098  
+
+10 rows selected.
+
+table cust_order
+====================
+
+ORDE CUST ORDER_DAT ORDER_AMOUNT  SALES_TAX                                     
+---- ---- --------- ------------ ----------                                     
+0001 0001 01-JAN-22          100          0                                     
+0002 0002 08-FEB-22          490          1                                     
+0003 0003 21-JAN-23            4          7                                     
+0004 0004 11-MAR-23          666          7                                     
+0005 0005 28-NOV-23          150          0                                     
+0006 0006 28-NOV-23          120          0                                     
+0007 0007 05-JAN-22          150          0                                     
+0008 0008 12-JAN-22          125          0                                     
+0009 0009 10-FEB-22          160          0                                     
+0010 0010 18-JUL-87          145          0                                     
+
+10 rows selected.
+
+table subscription_order
+====================
+
+SUB_ SUB_STATUS ORDE                                                            
+---- ---------- ----                                                            
+0001          1 0001                                                            
+0002          1 0002                                                            
+0003          1 0003                                                            
+0004          1 0004                                                            
+0005          1 0005                                                            
+0006          1 0006                                                            
+0007          1 0007                                                            
+0008          1 0008                                                            
+0009          1 0009                                                            
+0010          1 0010                                                            
+
+10 rows selected.
+
+table subscription_shipment
+====================
+
+SUB_ SHIP_STATUS     SUB_PERIOD           SUB_DATE  SHIP_DATE                   
+---- --------------- -------------------- --------- ---------                   
+0001 Shipped         Monthly              01-JAN-22 01-JAN-22                   
+0002 Shipped         Monthly              08-FEB-22 13-FEB-22                   
+0003 Shipped         Monthly              01-FEB-23 02-FEB-23                   
+0004 Shipped         Monthly              01-APR-23 19-APR-23                   
+0005 Shipped         Monthly              01-DEC-23 05-DEC-23                   
+0006 Shipped         Monthly              01-DEC-23 05-DEC-23                   
+0007 Shipped         Monthly              16-JAN-22 16-JAN-22                   
+0008 Shipped         Monthly              18-JAN-22 18-JAN-22                   
+0009 Shipped         Monthly              19-MAR-22 19-MAR-22                   
+0010 Shipped         Monthly              14-NOV-83 14-NOV-83                   
+
+10 rows selected.
+
+table credit_card_info
+====================
+
+CUST CARD_NUMBER      EXPIRATIO CVV                                             
+---- ---------------- --------- ---                                             
+0001 1234567890123456 01-JAN-22 123                                             
+0002 5467413115761230 08-MAR-22 123                                             
+0003 1234577890123499 01-JAN-25 489                                             
+0004 1234567990123456 01-JAN-27 454                                             
+0005 9876543210987654 01-DEC-27 789                                             
+0006 1111222233334444 01-DEC-27 222                                             
+0007 9876543210987654 13-SEP-31 321                                             
+0008 4363876344987654 17-SEP-31 325                                             
+0009 3439094578987654 10-AUG-31 334                                             
+0010 0349283098987654 27-OCT-23 549                                             
+
+10 rows selected.
+
+table one_time_order
+====================
+
+ONE_                                                                            
+----                                                                            
+0001                                                                            
+0002                                                                            
+0003                                                                            
+0004                                                                            
+0005                                                                            
+0006                                                                            
+0007                                                                            
+0008                                                                            
+0009                                                                            
+0010                                                                            
+
+10 rows selected.
+
+table product
+====================
+
+PROD PROD_NAME            PROD_DESC            PROD_PRICE PROD_QUANTITY         
+---- -------------------- -------------------- ---------- -------------         
+0001 Product 1            Description 1                11           100         
+0002 Ink                  Goes on paper.               43           100         
+1745 Purple Ribbon        Deep Purple Ribbon (         25            97         
+0004 Good ol Fashioned Ty Built to last               150           666         
+0005 Typewriter Ribbon    High-quality ink rib         20            50         
+0006 Typewriter Key Kit   Replacement keys for         30            30         
+0007 F Key                It goes on a typewri         16            50         
+0008 Wrench               You can throw it at          12            25         
+0009 Screwdriver          This is a nifty tool         12            20         
+0010 Springs              Keep them dry.                9            30         
+
+10 rows selected.
+
+table order_product
+====================
+
+ORDE PROD ORDER_QUANTITY                                                        
+---- ---- --------------                                                        
+0001 0001              2                                                        
+0002 0002              2                                                        
+0003 1745              2                                                        
+0004 0004              1                                                        
+0005 0005              2                                                        
+0006 0006              1                                                        
+0007 0007              3                                                        
+0008 0008              7                                                        
+0009 0009              5                                                        
+0010 0010              6                                                        
+
+10 rows selected.
+
+table address
+====================
+
+ADDR ADDRESS_TY STREET_ADDRESS       CITY  ST POSTA CUST                        
+---- ---------- -------------------- ----- -- ----- ----                        
+0001 Billing    123 Main St          City  ST 12345 0001                        
+0002 Billing    465 Second St        City  ST 11321 0002                        
+0003 Billing    741 Hollywood Blvd.  Holly CA 90210 0003                        
+0004 Billing    47 West Broadway     Bango ME 04401 0004                        
+0005 Shipping   456 Oak Street       Oakla CA 94612 0005                        
+0006 Shipping   789 Pine Avenue      Pinev LA 71360 0006                        
+0007 Billing    456 Elm St           Augus MA 54321 0007                        
+0008 Billing    678 7th St           Jones ND 44357 0008                        
+0009 Billing    555 B St             Lions UT 40010 0009                        
+0010 Billing    830 Sunset Blvd      Colum OH 90210 0010                        
+
+10 rows selected.
+
+table account
+====================
+
+USER USERNAME        PASSWORD                                                   
+---- --------------- --------------------                                       
+0001 johndoe         password                                                   
+0002 SamCart         wordpass                                                   
+0003 tomhanks        givemeribbons                                              
+0004 stevesy         theshining                                                 
+0005 ernesth         oldmanandthesea                                            
+0006 agathac         murderontheorientexp                                       
+0007 janesmith       chanisreallycool1234                                       
+0008 michaelberry    reallysecurepassword                                       
+0009 joeyconnors     dontguessmypassword                                        
+0010 purpleguy       ialwayscomeback                                            
+
+10 rows selected.
+
+table shipment
+====================
+
+SHIP SHIP_STATUS     ONE_                                                       
+---- --------------- ----                                                       
+0001 Shipped         0001                                                       
+0002 Shipped         0002                                                       
+1799 Shipped         0003                                                       
+0004 Shipped         0004                                                       
+0005 Shipped         0005                                                       
+0006 Shipped         0006                                                       
+0007 Shipped         0007                                                       
+0008 Shipped         0008                                                       
+0009 Shipped         0009                                                       
+0010 Shipped         0010                                                       
+
+10 rows selected.
+
