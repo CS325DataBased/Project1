@@ -13,7 +13,7 @@ var con = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
-  database: "mysql"
+  database: "test"
 });
 
 //Checking that SQL connect was a success.
@@ -97,6 +97,34 @@ app.post('/deleteProductFromDB', (req, res) => {
     // fields will contain information about the returned results fields (if any)
   });
 });
+
+//Defining Add Order Post Request.
+app.post('/addNewOrderToDB', (req, res) => {
+  // console.log(req.body.first);
+  con.query('insert into order SET order_id = ?',[req.body.id],function (error, results, fields) {
+    if (error) {
+      console.log(error);
+    };
+    // error will be an Error if one occurred during the query
+    // results will contain the results of the query
+    // fields will contain information about the returned results fields (if any)
+    // , order_status = ?, date = ?, order_customer_name = ?, card_number = ?, card_expiration = ?, card_cvv = ?, address_street = ?, address_city = ?, address_state = ?, address_zip = ?
+  });
+});
+
+//Defining remove Order Post Request.
+app.post('/deleteOrderFromDB', (req, res) => {
+  // console.log(req.body.first);
+  con.query('delete from order where order_id = ?',[req.body.id],function (error, results, fields) {
+    if (error) {
+      console.log(error);
+    };
+    // error will be an Error if one occurred during the query
+    // results will contain the results of the query
+    // fields will contain information about the returned results fields (if any)
+  });
+});
+
 //Test Queries.
 con.query('CREATE TABLE IF NOT EXISTS `customer` (	`customer_id` INT(11) NOT NULL,	`first_name` VARCHAR(40) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`last_name` VARCHAR(40) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`email` VARCHAR(20) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`phone` VARCHAR(10) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	PRIMARY KEY (`customer_id`) USING BTREE) COLLATE=\'utf8mb4_general_ci\' ENGINE=InnoDB;', function (error, results, fields) {
   if (error) throw error;
@@ -105,6 +133,13 @@ con.query('CREATE TABLE IF NOT EXISTS `customer` (	`customer_id` INT(11) NOT NUL
   // fields will contain information about the returned results fields (if any)
 });
 con.query('CREATE TABLE IF NOT EXISTS product (product_id int,product_name varchar(50),product_description varchar(100),price decimal(6,2),quantity int,PRIMARY KEY (product_id));', function (error, results, fields) {
+  if (error) throw error;
+  // error will be an Error if one occurred during the query
+  // results will contain the results of the query
+  // fields will contain information about the returned results fields (if any)
+});
+//  `order_customer_name` varchar(50), `card_number` int, `card_expiration` varchar(50), `card_cvv` int, `address_street` varchar(50), `address_city` varchar(50), `address_state` varchar(50), `address_zip` int,
+con.query('CREATE TABLE IF NOT EXISTS `order` (`order_id` int, PRIMARY KEY (order_id));', function (error, results, fields) {
   if (error) throw error;
   // error will be an Error if one occurred during the query
   // results will contain the results of the query

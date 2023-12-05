@@ -127,6 +127,8 @@ var createNewOrder = function () {
     };
 
     addOrder(formatNumber(id), orderStatus, date, orderCustomerName, items, card, address);
+    addNewOrderToDB(formatNumber(id));
+    //  orderStatus, date, orderCustomerName, items, card, address
     UIkit.modal("#order-creation-modal").hide();
     setTimeout(function () {
       document.getElementById('orderStatus').selectedIndex = 0;
