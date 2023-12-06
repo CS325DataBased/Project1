@@ -25,7 +25,7 @@ con.connect(function(err) {
 //Defining Add Customer Post Request.
 app.post('/addNewCustomerToDB', (req, res) => {
   console.log(req.body.id,req.body.first,req.body.last,req.body.email,req.body.phone);
-  con.query('insert into customer SET cust_id = ?, cust_fname = ?, cust_lname = ?,email = ?, cust_phone = ?',[req.body.id,req.body.first,req.body.last,req.body.email,req.body.phone],function (error, results, fields) {
+  con.query('insert into customer SET customer_id = ?, first_name = ?, last_name = ?,email = ?, phone = ?',[req.body.id,req.body.first,req.body.last,req.body.email,req.body.phone],function (error, results, fields) {
     if (error) {
       console.log(error);
     };
@@ -38,7 +38,7 @@ app.post('/addNewCustomerToDB', (req, res) => {
 //Defining Add Customer Post Request.
 app.post('/deleteCustomerFromDB', (req, res) => {
   // console.log(req.body.first);
-  con.query('delete from customer where cust_id = ?',[req.body.id],function (error, results, fields) {
+  con.query('delete from customer where customer_id = ?',[req.body.id],function (error, results, fields) {
     if (error) {
       console.log(error);
     };
