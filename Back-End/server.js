@@ -111,8 +111,8 @@ app.get('/GetProductData', (req, res) => {
 });
 
 app.get('/GetOneTimeOrderData', (req, res) => {
-
-  var getOrders = 'select * from cust_order,credit_card_info,address,customer where cust_order.cc_id = credit_card_info.cc_id and cust_order.address_id = address.address_id and cust_order.cust_id = customer.cust_id';
+// cust_order.cc_id = credit_card_info.cc_id and cust_order.address_id = address.address_id and
+  var getOrders = 'select * from cust_order,credit_card_info,address,customer where cust_order.cust_id = customer.cust_id';
   con.query(getOrders, function (error, results) {
     // console.log(results);
     if (error) {
@@ -254,20 +254,43 @@ app.post('/addOrderPrductsToDB', (req, res) => {
 });
 
 //Test Queries.
-con.query('CREATE TABLE IF NOT EXISTS `customer` (	`customer_id` INT(11) NOT NULL,	`first_name` VARCHAR(40) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`last_name` VARCHAR(40) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`email` VARCHAR(20) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`phone` VARCHAR(10) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	PRIMARY KEY (`customer_id`) USING BTREE) COLLATE=\'utf8mb4_general_ci\' ENGINE=InnoDB;', function (error, results, fields) {
+con.query('CREATE TABLE IF NOT EXISTS `customer` (	`cust_id` INT(11) NOT NULL,	`cust_fname` VARCHAR(40) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`cust_lname` VARCHAR(40) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`email` VARCHAR(20) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	`cust_phone` VARCHAR(10) NULL DEFAULT NULL COLLATE \'utf8mb4_general_ci\',	PRIMARY KEY (`cust_id`) USING BTREE) COLLATE=\'utf8mb4_general_ci\' ENGINE=InnoDB;', function (error, results, fields) {
   if (error) throw error;
   // error will be an Error if one occurred during the query
   // results will contain the results of the query
   // fields will contain information about the returned results fields (if any)
 });
-con.query('CREATE TABLE IF NOT EXISTS product (product_id int,product_name varchar(50),product_description varchar(100),price decimal(6,2),quantity int,PRIMARY KEY (product_id));', function (error, results, fields) {
+con.query('CREATE TABLE IF NOT EXISTS product (prod_id int,prod_name varchar(50),prod_desc varchar(100),prod_price decimal(6,2),prod_quantity int,PRIMARY KEY (prod_id));', function (error, results, fields) {
   if (error) throw error;
   // error will be an Error if one occurred during the query
   // results will contain the results of the query
   // fields will contain information about the returned results fields (if any)
 });
-//  `order_customer_name` varchar(50), `card_number` int, `card_expiration` varchar(50), `card_cvv` int, `address_street` varchar(50), `address_city` varchar(50), `address_state` varchar(50), `address_zip` int,
-con.query('CREATE TABLE IF NOT EXISTS `cust_order` (`order_id` int, PRIMARY KEY (order_id));', function (error, results, fields) {
+con.query('CREATE TABLE IF NOT EXISTS `cust_order` (`order_id` int,cust_id INT(11), order_date VARCHAR(40),order_amount VARCHAR(40),sales_tax VARCHAR(40),cc_id VARCHAR(40),address_id VARCHAR(40), PRIMARY KEY (order_id));', function (error, results, fields) {
+  if (error) throw error;
+  // error will be an Error if one occurred during the query
+  // results will contain the results of the query
+  // fields will contain information about the returned results fields (if any)
+});
+con.query('CREATE TABLE IF NOT EXISTS `one_time_order` (one_time_order_id INT(11), one_time_status VARCHAR(40), PRIMARY KEY (one_time_order_id));', function (error, results, fields) {
+  if (error) throw error;
+  // error will be an Error if one occurred during the query
+  // results will contain the results of the query
+  // fields will contain information about the returned results fields (if any)
+});
+con.query('CREATE TABLE IF NOT EXISTS `order_product` (prod_id INT(11), order_quantity VARCHAR(40),order_id INT(11), PRIMARY KEY (order_id));', function (error, results, fields) {
+  if (error) throw error;
+  // error will be an Error if one occurred during the query
+  // results will contain the results of the query
+  // fields will contain information about the returned results fields (if any)
+});
+con.query('CREATE TABLE IF NOT EXISTS `credit_card_info` (cc_id INT(11), card_number VARCHAR(40),expiration_date VARCHAR(40),CVV VARCHAR(40),cust_id INT(11), PRIMARY KEY (cc_id));', function (error, results, fields) {
+  if (error) throw error;
+  // error will be an Error if one occurred during the query
+  // results will contain the results of the query
+  // fields will contain information about the returned results fields (if any)
+});
+con.query('CREATE TABLE IF NOT EXISTS `address` (address_id INT(11), address_type VARCHAR(40),street_address VARCHAR(40),city VARCHAR(40),state VARCHAR(40),postal_code VARCHAR(40),cust_id INT(11), PRIMARY KEY (address_id));', function (error, results, fields) {
   if (error) throw error;
   // error will be an Error if one occurred during the query
   // results will contain the results of the query
