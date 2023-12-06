@@ -60,6 +60,31 @@ app.post('/GetPartID', (req, res) => {
   });
 });
 
+
+app.post('/GetPartsForOrder', (req, res) => {
+  const query = 'select * from order_product where order_id = '+ '\'' + req.body.orderid + '\'';
+  con.query(query, function (error, results) {
+    if (error) {
+      console.log(error);
+    } else {
+      // console.log(results);
+      res.json(results);
+    }
+  });
+});
+
+app.post('/GetPartInfoForOrder', (req, res) => {
+  const query = 'select * from product where prod_id = '+ '\'' + req.body.prodid + '\'';
+  con.query(query, function (error, results) {
+    if (error) {
+      console.log(error);
+    } else {
+      // console.log(results);
+      res.json(results);
+    }
+  });
+});
+
 app.get('/GetCustomerData', (req, res) => {
   const query = 'select * from customer';
   con.query(query, function (error, results) {
@@ -71,6 +96,8 @@ app.get('/GetCustomerData', (req, res) => {
     }
   });
 });
+
+
 app.get('/GetProductData', (req, res) => {
   const query = 'select * from product';
   con.query(query, function (error, results) {
@@ -83,14 +110,36 @@ app.get('/GetProductData', (req, res) => {
   });
 });
 
-app.get('/GetOrderData', (req, res) => {
-  const query = 'select * from cust_order';
-  con.query(query, function (error, results) {
+app.get('/GetOneTimeOrderData', (req, res) => {
+
+  var getOrders = 'select * from cust_order,credit_card_info,address,customer where cust_order.cc_id = credit_card_info.cc_id and cust_order.address_id = address.address_id and cust_order.cust_id = customer.cust_id';
+  con.query(getOrders, function (error, results) {
+    // console.log(results);
     if (error) {
       console.log(error);
     } else {
-      // console.log(results);
-      res.json(results);
+      let returnValue = [];
+      console.log(results.length);
+      for(let i = 0;i < results.length;i++) {
+        let order = [];
+        let getItems = 'select * from order_product,product where order_id = '+ '\'' + results[i].order_id + '\''+' and order_product.prod_id = product.prod_id';
+        con.query(getItems, function (error, results2) {
+          let items = [];
+          for(let j = 0;j < results2.length;j++) {
+            console.log(results2[j].prod_id,results2[j].prod_name,results2[j].prod_desc,results2[j].prod_price,results2[j].prod_quantity)
+            items.push({id:results2[j].prod_id,name:results2[j].prod_name,quantity:results2[j].prod_quantity});
+          }
+          let orderInfo = {order_id:results[i].order_id,cust_id:results[i].cust_id,order_date:results[i].order_date,order_amount:results[i].order_amount,sales_tax:results[i].sales_tax,cc_id:results[i].cc_id,items:items};
+          let card = {cc_id:results[i].cc_id,cc_number:results[i].card_number,cc_expiration:results[i].expiration_date,cc_cvv:results[i].CVV};
+          let address = {address_id:results[i].address_id,addressType:results[i].address_type,street:results[i].street_address,city:results[i].city,state:results[i].state,zip:results[i].postal_code};
+          let customer = {cust_id:results[i].cust_id,first_name:results[i].cust_fname,last_name:results[i].cust_lname,email:results[i].email,phone:results[i].cust_phone};
+          order.push(items,orderInfo,card,address,customer);
+          returnValue.push(order);
+        });
+      }
+      setTimeout(function(){
+        res.json(returnValue);
+    }, 10);
     }
   });
 });
@@ -123,13 +172,13 @@ app.post('/deleteProductFromDB', (req, res) => {
 
 //Defining Add Order Post Request.
 app.post('/addNewOrderToDB', (req, res) => {
-  console.log(req.body.orderid,req.body.custid,req.body.order_date,req.body.order_amount,req.body.sales_tax,req.body.cc_id);
-  con.query('insert into cust_order SET order_id = ?,cust_id = ?, order_date = ?,order_amount = ?,sales_tax = ?,cc_id = ?',[req.body.orderid,req.body.custid,req.body.order_date,req.body.order_amount,req.body.sales_tax,req.body.cc_id],function (error, results, fields) {
+  console.log(req.body.orderid,req.body.custid,req.body.order_date,req.body.order_amount,req.body.sales_tax,req.body.cc_id,req.body.address_id);
+  con.query('insert into cust_order SET order_id = ?,cust_id = ?, order_date = ?,order_amount = ?,sales_tax = ?,cc_id = ?,address_id = ?',[req.body.orderid,req.body.custid,req.body.order_date,req.body.order_amount,req.body.sales_tax,req.body.cc_id,req.body.address_id],function (error, results, fields) {
     if (error) {
       console.log(error);
     };
     if(req.body.type === 'one-time') {
-      con.query('insert into one_time_order SET one_time_order_id = ?',[req.body.orderid],function (error, results, fields) {
+      con.query('insert into one_time_order SET one_time_order_id = ?, one_time_status = ?',[req.body.orderid,req.body.status],function (error, results, fields) {
         if (error) {
           console.log(error);
         };
@@ -146,6 +195,11 @@ app.post('/addNewOrderToDB', (req, res) => {
 
 //Defining remove Order Post Request.
 app.post('/deleteOrderFromDB', (req, res) => {
+  con.query('delete from order_product where order_id = ?',[req.body.orderid],function (error, results, fields) {
+    if (error) {
+      console.log(error);
+    };
+  });
   console.log(req.body.orderid);
   if(req.body.type === 'one-time') {
     con.query('delete from one_time_order where one_time_order_id = ?',[req.body.orderid],function (error, results, fields) {

@@ -1,5 +1,6 @@
 // addOrder
 var addOrder = function (id, orderStatus, date, customerName, items, card, address,type) {
+  date = date.slice(0, 10);
   var itemList = document.createElement('ul');
   var listItem = document.createElement('li');
   listItem.innerHTML = ``;
@@ -32,9 +33,9 @@ var addOrder = function (id, orderStatus, date, customerName, items, card, addre
   var addressString = "";
 
   cardString = `card = {
-        number: '${card.number}',
-        expirationDate: '${card.expirationDate}',
-        cvv: '${card.cvv}'
+        number: '${card.cc_number}',
+        expirationDate: '${card.cc_expiration}',
+        cvv: '${card.cc_cvv}'
       },`;
 
   addressString = `address = {
@@ -65,7 +66,7 @@ var addOrder = function (id, orderStatus, date, customerName, items, card, addre
       </div>
       <td>
         <button onclick="editOrder(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},` + cardString + `` + addressString + `)" uk-toggle="#order-edit-modal" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
-        <button onclick="deleteRow(${id});deleteOrderFromDB(${id},\"one-time\")" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
+        <button onclick="deleteRow(${id});deleteOrderFromDB(${id},\'one-time\')" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
       </td>
       <div id = "hidden${formatNumber(id)}" style = "display: none;">
         ${itemList.innerHTML}
