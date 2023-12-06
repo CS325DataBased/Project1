@@ -1,5 +1,5 @@
 // addOrder
-var addOrder = function (id, orderStatus, date, customerName, items, card, address) {
+var addOrder = function (id, orderStatus, date, customerName, items, card, address,type) {
   var itemList = document.createElement('ul');
   var listItem = document.createElement('li');
   listItem.innerHTML = ``;
@@ -65,7 +65,7 @@ var addOrder = function (id, orderStatus, date, customerName, items, card, addre
       </div>
       <td>
         <button onclick="editOrder(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},` + cardString + `` + addressString + `)" uk-toggle="#order-edit-modal" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
-        <button onclick="deleteRow(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
+        <button onclick="deleteRow(${id});deleteOrderFromDB(${id},\"one-time\")" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
       </td>
       <div id = "hidden${formatNumber(id)}" style = "display: none;">
         ${itemList.innerHTML}
@@ -95,10 +95,10 @@ var createNewOrder = function () {
 
     var partList = document.getElementById('orderPartList').children;
     for (var i = 0; i < partList.length; i++) {
-      var part = partList[i];
-      var id = part.children[0].getAttribute('data-id');
-      var name = part.children[1].getAttribute('data-name');
-      var quantity = part.children[2].getAttribute('data-quantity');
+      let part = partList[i];
+      let id = part.children[0].getAttribute('data-id');
+      let name = part.children[1].getAttribute('data-name');
+      let quantity = part.children[2].getAttribute('data-quantity');
       items.push({ id: id, name: name, quantity: quantity });
     }
 
@@ -114,20 +114,30 @@ var createNewOrder = function () {
     var addressZip = document.getElementById('orderAddressZip').value;
 
     var card = {
-      number: cardNumber,
-      expirationDate: cardExpiration,
-      cvv: cardCVV
+      cc_id: Math.floor(Math.random()*9999),
+      cc_number: cardNumber,
+      cc_expiration: cardExpiration,
+      cc_cvv: cardCVV
     };
 
     var address = {
+      address_id: Math.floor(Math.random()*9999),
+      addressType: "shipping",
       street: addressStreet,
       city: addressCity,
       state: addressState,
       zip: addressZip
     };
-
+    var orderInfo = {
+      order_id: id,
+      orderStatus: orderStatus,
+      order_date: date,
+      order_amount: 100,
+      sales_tax: 0.5,
+      cust_id: orderCustomerName,
+    }
     addOrder(formatNumber(id), orderStatus, date, orderCustomerName, items, card, address);
-    addNewOrderToDB(formatNumber(id));
+    addNewOrderToDB(orderInfo, items, card, address,"one-time");
     //  orderStatus, date, orderCustomerName, items, card, address
     UIkit.modal("#order-creation-modal").hide();
     setTimeout(function () {
@@ -171,7 +181,7 @@ var editOrder = function (id, orderStatus, date, customerName, items, card, addr
       <span data-id="${item.id}">      <i class="ri-hashtag"></i> ${formatNumber(item.id)}</span>
       <span data-name="${item.name}">                 <i class="ri-price-tag-3-fill"></i> ${item.name}</span>
       <span data-quantity="${item.quantity}">         <i class="ri-numbers-fill"></i> ${item.quantity}</span>
-      <button onclick="this.parentNode.remove()"><i class="ri-delete-bin-2-fill"></i></button>
+      <button onclick="this.parentNode.remove()><i class="ri-delete-bin-2-fill"></i></button>
     </h4>`;
 
     document.getElementById('editOrderPartList').innerHTML += itemHTML;
@@ -283,7 +293,7 @@ var editOrderValues = function (id, orderStatus, date, customerName, items, card
        </div>
        <td>
        <button onclick="editOrder(${id}, '${orderStatus}', '${date}', '${customerName}', items = ${itemsString},` + cardString + `` + addressString + `)" uk-toggle="#order-edit-modal" class="uk-button uk-button-default uk-edit-button"><i class="ri-pencil-fill"></i></button>
-       <button onclick="deleteRow(${id})" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
+       <button onclick="deleteRow(${id});deleteOrderFromDB(${id},\"one-time\")" class="uk-button uk-button-default uk-delete-button"><i class="ri-delete-bin-fill"></i></button>
        </td>
        `;
 
@@ -330,7 +340,7 @@ var displayOrderRow = function (id, orderStatus, date, customerName, items, card
   // id
   document.getElementById('selected-row-id').innerHTML = `<i class="ri-hashtag" style="font-size: 20px;color: #666;vertical-align: middle;"></i> ` + formatNumber(id);
 
-  document.getElementById('selected-row-delete-button').onclick = function () { deleteRow(id) };
+  document.getElementById('selected-row-delete-button').onclick = function () { deleteRow(id);deleteOrderFromDB(id,"one-time")};
   document.getElementById('selected-row-edit-button').onclick = function () {
     UIkit.modal("#order-edit-modal").show();
 
@@ -364,28 +374,50 @@ var displayOrderRow = function (id, orderStatus, date, customerName, items, card
 
 var addPartToOrder = function () {
 
-  var partID = generateRandomNumber();
   var partName = document.getElementById('orderPartName').value;
-  var partQuantity = document.getElementById('orderPartQuantity').value;
-  var orderPartList = document.getElementById('orderPartList');
-
-  if (partName == "" || partQuantity == "") {
-    alert("Please fill out all empty fields.");
-    return;
-  } else {
-    document.getElementById('orderPartList').innerHTML += `
-      <h4 id="` + partID + `_parttoadd">
-      <span data-id = "`+ formatNumber(partID) + `" >      <i class="ri-hashtag"></i> ` + formatNumber(partID) + `</span>
-      <span data-name = "`+ partName + `">                 <i class="ri-price-tag-3-fill"></i> ` + partName + `</span>
-      <span data-quantity = "`+ partQuantity + `">         <i class="ri-numbers-fill"></i> ` + partQuantity + `</span>
-      <button onclick="this.parentNode.remove()"><i class="ri-delete-bin-2-fill"></i></button>
-    </h4>
-    `;
-
-    document.getElementById('orderPartName').value = "";
-    document.getElementById('orderPartQuantity').value = "";
-
-  }
+  var partID = null;
+  const url = 'http://localhost:80/GetPartID';
+  console.log(partName)
+  const response = fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({name:partName})
+  })  .then((response) => {
+    // Our handler throws an error if the request did not succeed.
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+    // Otherwise (if the response succeeded), our handler fetches the response
+    // as text by calling response.text(), and immediately returns the promise
+    // returned by `response.text()`.
+    return response.json();
+  })
+  // When response.text() has succeeded, the `then()` handler is called with
+  // the text, and we copy it into the `poemDisplay` box.
+  .then((json) => {
+    partID = json[0].prod_id;
+    console.log(partID);
+    var partQuantity = document.getElementById('orderPartQuantity').value;
+    var orderPartList = document.getElementById('orderPartList');
+  
+    if (partName == "" || partQuantity == "") {
+      alert("Please fill out all empty fields.");
+      return;
+    } else {
+      document.getElementById('orderPartList').innerHTML += `
+        <h4 id="` + partID + `_parttoadd">
+        <span data-id = "`+ formatNumber(partID) + `" >      <i class="ri-hashtag"></i> ` + formatNumber(partID) + `</span>
+        <span data-name = "`+ partName + `">                 <i class="ri-price-tag-3-fill"></i> ` + partName + `</span>
+        <span data-quantity = "`+ partQuantity + `">         <i class="ri-numbers-fill"></i> ` + partQuantity + `</span>
+        <button onclick="this.parentNode.remove()"><i class="ri-delete-bin-2-fill"></i></button>
+      </h4>
+      `;
+  
+      document.getElementById('orderPartName').value = "";
+      document.getElementById('orderPartQuantity').value = "";
+  
+    }
+  });
 };
 
 

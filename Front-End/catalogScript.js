@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
     .then((json) => {
       for(let i =0;i < json.length;i++) {
         console.log()
-          addPart(json[i].product_id,json[i].product_name,json[i].product_description ,json[i].price,json[i].quantity);
+          addPart(json[i].prod_id,json[i].prod_name,json[i].prod_desc ,json[i].prod_price,json[i].prod_quantity);
       }
     });
 });

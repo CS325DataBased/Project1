@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function(){
     // the text, and we copy it into the `poemDisplay` box.
     .then((json) => {
       for(let i =0;i < json.length;i++) {
-        console.log(json[i].customer_id);
-        addCustomer(json[i].customer_id,json[i].first_name,json[i].last_name,json[i].email,json[i].phone);
+        console.log(json[i].cust_id);
+        addCustomer(json[i].cust_id,json[i].cust_fname,json[i].cust_lname,json[i].email,json[i].cust_phone);
       }
     });
 });
