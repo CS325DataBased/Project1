@@ -1,5 +1,5 @@
 -- CS325-Fall-2023
--- Last Modified: 12/1/23
+-- Last Modified: 12/8/23
 
 -- Group Name: DataBased
 
@@ -34,7 +34,11 @@ VALUES ('0001', 'J', 'Doe', 'john.doe@example.com', '1234567890');
 
 -- Insert statements for cust_order table
 INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
-VALUES ('0001', '0001', '01-Jan-2022', 100, 0.1);
+VALUES ('0001', '0001', '02-Jan-2023', 100, 0.1);
+
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('0011', '0001', '02-Jan-2023', 100, 0.1);
 
 -- Insert statements for subscription_order table
 INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
@@ -50,13 +54,15 @@ VALUES ('0001', '1234567890123456', '01-Jan-2022', '123');
 
 -- Insert statements for one_time_order table
 INSERT INTO one_time_order (one_time_order_id)
-VALUES ('0001');
+VALUES ('0011');
 
 -- Insert statements for product table
 INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
 VALUES ('0001', 'P Key', 'The Key you P with', 10.99, 100);
 
 -- Insert statements for order_product table
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('0011', '0001', 75);
 INSERT INTO order_product (order_id, prod_id, order_quantity)
 VALUES ('0001', '0001', 2);
 
@@ -70,7 +76,7 @@ VALUES ('0001', 'johndoe', 'password');
 
 -- Insert statements for shipment table
 INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
-VALUES ('0001', 'Shipped', '0001');
+VALUES ('0001', 'Shipped', '0011');
 
 
 
@@ -84,13 +90,17 @@ VALUES ('0002', 'Sammy', 'Carter', 'Sam.Cart@example.com', '418041841');
 INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
 VALUES ('0002', '0002', '08-Feb-2022', 490, 0.5);
 
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('0022', '0002', '08-Feb-2023', 490, 0.5);
+
 -- Insert statements for subscription_order table
 INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
 VALUES ('0002', 1, '0002');
 
 -- Insert statements for subscription_shipment table
 INSERT INTO subscription_shipment (sub_ship_id, ship_status, sub_period, sub_date, ship_date)
-VALUES ('0002', 'Shipped', 'Monthly', '08-Feb-2022', '13-Feb-2022');
+VALUES ('0002', 'Shipped', 'Monthly', '08-Feb-2023', '13-Feb-2023');
 
 -- Insert statements for credit_card_info table
 INSERT INTO credit_card_info (cust_id, card_number, expiration_date, CVV)
@@ -98,13 +108,15 @@ VALUES ('0002', '5467413115761230', '08-Mar-2022', '123');
 
 -- Insert statements for one_time_order table
 INSERT INTO one_time_order (one_time_order_id)
-VALUES ('0002');
+VALUES ('0022');
 
 -- Insert statements for product table
 INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
 VALUES ('0002', 'Ink', 'Goes on paper.', 42.99, 100);
 
 -- Insert statements for order_product table
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('0022', '0002', 2);
 INSERT INTO order_product (order_id, prod_id, order_quantity)
 VALUES ('0002', '0002', 2);
 
@@ -118,7 +130,8 @@ VALUES ('0002', 'SamCart', 'wordpass');
 
 -- Insert statements for shipment table
 INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
-VALUES ('0002', 'Shipped', '0002');
+VALUES ('0002', 'Shipped', '0022');
+
 
 
 --INSERT THREE
@@ -129,6 +142,10 @@ VALUES ('0003', 'Thomas', 'Hanks', 'tom.hanks@gmail.com', '3105559797');
 -- Insert statements for cust_order table
 INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
 VALUES ('0003', '0003', '21-Jan-2023', 4, 7.25);
+
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('0033', '0003', '21-Jan-2023', 4, 7.25);
 
 -- Insert statements for subscription_order table
 INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
@@ -144,7 +161,7 @@ VALUES ('0003', '1234577890123499', '01-Jan-2025', '489');
 
 -- Insert statements for one_time_order table
 INSERT INTO one_time_order (one_time_order_id)
-VALUES ('0003');
+VALUES ('0033');
 
 -- Insert statements for product table
 INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
@@ -153,6 +170,8 @@ VALUES ('1745', 'Purple Ribbon', 'Deep Purple Ribbon (Ink) for any standard size
 -- Insert statements for order_product table
 INSERT INTO order_product (order_id, prod_id, order_quantity)
 VALUES ('0003', '1745', 2);
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('0033', '1745', 2);
 
 -- Insert statements for address table
 INSERT INTO address (address_id, address_type, street_address, city, state, postal_code, cust_id)
@@ -164,7 +183,7 @@ VALUES ('0003', 'tomhanks', 'givemeribbons');
 
 -- Insert statements for shipment table
 INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
-VALUES ('1799', 'Shipped', '0003');
+VALUES ('1799', 'Shipped', '0033');
 
 
 
@@ -176,6 +195,10 @@ VALUES ('0004', 'Stephen', 'King', 's.king@yahoo.com', '2075559797');
 -- Insert statements for cust_order table
 INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
 VALUES ('0004', '0004', '11-March-2023', 666, 7.25);
+
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('0044', '0004', '11-March-2023', 666, 7.25);
 
 -- Insert statements for subscription_order table
 INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
@@ -191,15 +214,17 @@ VALUES ('0004', '1234567990123456', '01-Jan-2027', '454');
 
 -- Insert statements for one_time_order table
 INSERT INTO one_time_order (one_time_order_id)
-VALUES ('0004');
+VALUES ('0044');
 
 -- Insert statements for product table
 INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
-VALUES ('0004', 'Good ol Fashioned Type Writer', 'Built to last', 149.99, 666);
+VALUES ('0004', 'Good ol Fashioned Typewriter', 'Built to last', 149.99, 666);
 
 -- Insert statements for order_product table
 INSERT INTO order_product (order_id, prod_id, order_quantity)
 VALUES ('0004', '0004', 1);
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('0044', '0004', 1);
 
 -- Insert statements for address table
 INSERT INTO address (address_id, address_type, street_address, city, state, postal_code, cust_id)
@@ -211,7 +236,7 @@ VALUES ('0004', 'stevesy', 'theshining');
 
 -- Insert statements for shipment table
 INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
-VALUES ('0004', 'Shipped', '0004');
+VALUES ('0004', 'Shipped', '0044');
 
 
 --INSERT FIVE
@@ -223,6 +248,10 @@ VALUES ('0005', 'Ernest', 'Hemingway', 'ernhem@example.com', '5551234567');
 -- Insert statements for cust_order table
 INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
 VALUES ('0005', '0005', '28-Nov-2023', 150, 0.15);
+
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('0055', '0005', '28-Nov-2023', 150, 0.15);
 
 -- Insert statements for subscription_order table
 INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
@@ -238,7 +267,7 @@ VALUES ('0005', '9876543210987654', '01-Dec-2027', '789');
 
 -- Insert statements for one_time_order table
 INSERT INTO one_time_order (one_time_order_id)
-VALUES ('0005');
+VALUES ('0055');
 
 -- Insert statements for product table
 INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
@@ -247,6 +276,8 @@ VALUES ('0005', 'Typewriter Ribbon', 'High-quality ink ribbon', 19.99, 50);
 -- Insert statements for order_product table
 INSERT INTO order_product (order_id, prod_id, order_quantity)
 VALUES ('0005', '0005', 2);
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('0055', '0005', 7);
 
 -- Insert statements for address table
 INSERT INTO address (address_id, address_type, street_address, city, state, postal_code, cust_id)
@@ -258,7 +289,7 @@ VALUES ('0005', 'ernesth', 'oldmanandthesea');
 
 -- Insert statements for shipment table
 INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
-VALUES ('0005', 'Shipped', '0005');
+VALUES ('0005', 'Shipped', '0055');
 
 
 --INSERT SIX
@@ -270,6 +301,10 @@ VALUES ('0006', 'Agatha', 'Christie', 'aga.chr@hotmail.com', '9998765432');
 -- Insert statements for cust_order table
 INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
 VALUES ('0006', '0006', '28-Nov-2023', 120, 0.12);
+
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('0066', '0006', '28-Nov-2023', 120, 0.12);
 
 -- Insert statements for subscription_order table
 INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
@@ -285,7 +320,7 @@ VALUES ('0006', '1111222233334444', '01-Dec-2027', '222');
 
 -- Insert statements for one_time_order table
 INSERT INTO one_time_order (one_time_order_id)
-VALUES ('0006');
+VALUES ('0066');
 
 -- Insert statements for product table
 INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
@@ -294,6 +329,9 @@ VALUES ('0006', 'Typewriter Key Kit', 'Replacement keys for typewriters', 29.99,
 -- Insert statements for order_product table
 INSERT INTO order_product (order_id, prod_id, order_quantity)
 VALUES ('0006', '0006', 1);
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('0066', '0006', 3);
+
 
 -- Insert statements for address table
 INSERT INTO address (address_id, address_type, street_address, city, state, postal_code, cust_id)
@@ -305,7 +343,7 @@ VALUES ('0006', 'agathac', 'murderontheorientexp');
 
 -- Insert statements for shipment table
 INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
-VALUES ('0006', 'Shipped', '0006');
+VALUES ('0006', 'Shipped', '0066');
 
 
 
@@ -318,6 +356,10 @@ VALUES ('0007', 'Jane', 'Smith', 'jane.smith@example.com', '9876543210');
 -- Insert statements for cust_order table
 INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
 VALUES ('0007', '0007', '05-Jan-2022', 150, 0.15);
+
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('0077', '0007', '05-Jan-2022', 150, 0.15);
 
 -- Insert statements for subscription_order table
 INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
@@ -333,7 +375,7 @@ VALUES ('0007', '9876543210987654', '13-Sep-2031', '321');
 
 -- Insert statements for one_time_order table
 INSERT INTO one_time_order (one_time_order_id)
-VALUES ('0007');
+VALUES ('0077');
 
 -- Insert statements for product table
 INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
@@ -342,6 +384,8 @@ VALUES ('0007', 'F Key', 'It goes on a typewriter.', 15.99, 50);
 -- Insert statements for order_product table
 INSERT INTO order_product (order_id, prod_id, order_quantity)
 VALUES ('0007', '0007', 3);
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('0077', '0007', 17);
 
 -- Insert statements for address table
 INSERT INTO address (address_id, address_type, street_address, city, state, postal_code, cust_id)
@@ -353,7 +397,7 @@ VALUES ('0007', 'janesmith', 'chanisreallycool1234');
 
 -- Insert statements for shipment table
 INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
-VALUES ('0007', 'Shipped', '0007');
+VALUES ('0007', 'Shipped', '0077');
 
 
 
@@ -366,6 +410,10 @@ VALUES ('0008', 'Michael', 'Berry', 'michael.berry@example.com', '4363876344');
 -- Insert statements for cust_order table
 INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
 VALUES ('0008', '0008', '12-Jan-2022', 125, 0.15);
+
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('0088', '0008', '12-Jan-2022', 125, 0.15);
 
 -- Insert statements for subscription_order table
 INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
@@ -381,7 +429,7 @@ VALUES ('0008', '4363876344987654', '17-Sep-2031', '325');
 
 -- Insert statements for one_time_order table
 INSERT INTO one_time_order (one_time_order_id)
-VALUES ('0008');
+VALUES ('0088');
 
 -- Insert statements for product table
 INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
@@ -390,6 +438,8 @@ VALUES ('0008', 'Wrench', 'You can throw it at something, I think.', 12.49, 25);
 -- Insert statements for order_product table
 INSERT INTO order_product (order_id, prod_id, order_quantity)
 VALUES ('0008', '0008', 7);
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('0088', '0008', 9);
 
 -- Insert statements for address table
 INSERT INTO address (address_id, address_type, street_address, city, state, postal_code, cust_id)
@@ -401,7 +451,7 @@ VALUES ('0008', 'michaelberry', 'reallysecurepassword');
 
 -- Insert statements for shipment table
 INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
-VALUES ('0008', 'Shipped', '0008');
+VALUES ('0008', 'Shipped', '0088');
 
 
 
@@ -414,6 +464,10 @@ VALUES ('0009', 'Joey', 'Connors', 'joey.connors@example.com', '3439094578');
 -- Insert statements for cust_order table
 INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
 VALUES ('0009', '0009', '10-Feb-2022', 160, 0.15);
+
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('0099', '0009', '10-Feb-2022', 160, 0.15);
 
 -- Insert statements for subscription_order table
 INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
@@ -429,7 +483,7 @@ VALUES ('0009', '3439094578987654', '10-Aug-2031', '334');
 
 -- Insert statements for one_time_order table
 INSERT INTO one_time_order (one_time_order_id)
-VALUES ('0009');
+VALUES ('0099');
 
 -- Insert statements for product table
 INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
@@ -438,6 +492,8 @@ VALUES ('0009', 'Screwdriver', 'This is a nifty tool', 11.99, 20);
 -- Insert statements for order_product table
 INSERT INTO order_product (order_id, prod_id, order_quantity)
 VALUES ('0009', '0009', 5);
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('0099', '0009', 3);
 
 -- Insert statements for address table
 INSERT INTO address (address_id, address_type, street_address, city, state, postal_code, cust_id)
@@ -449,7 +505,7 @@ VALUES ('0009', 'joeyconnors', 'dontguessmypassword');
 
 -- Insert statements for shipment table
 INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
-VALUES ('0009', 'Shipped', '0009');
+VALUES ('0009', 'Shipped', '0099');
 
 
 
@@ -462,6 +518,10 @@ VALUES ('0010', 'William', 'Afton', 'william.afton@ffpizza.com', '0349283098');
 -- Insert statements for cust_order table
 INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
 VALUES ('0010', '0010', '18-Jul-1987', 145, 0.15);
+
+-- Insert statements for cust_order table
+INSERT INTO cust_order (order_id, cust_id, order_date, order_amount, sales_tax)
+VALUES ('0110', '0010', '18-Jul-1987', 145, 0.15);
 
 -- Insert statements for subscription_order table
 INSERT INTO subscription_order (sub_order_id, sub_status, order_id)
@@ -477,7 +537,7 @@ VALUES ('0010', '0349283098987654', '27-Oct-2023', '549');
 
 -- Insert statements for one_time_order table
 INSERT INTO one_time_order (one_time_order_id)
-VALUES ('0010');
+VALUES ('0110');
 
 -- Insert statements for product table
 INSERT INTO product (prod_id, prod_name, prod_desc, prod_price, prod_quantity)
@@ -486,6 +546,8 @@ VALUES ('0010', 'Springs', 'Keep them dry.', 8.99, 30);
 -- Insert statements for order_product table
 INSERT INTO order_product (order_id, prod_id, order_quantity)
 VALUES ('0010', '0010', 6);
+INSERT INTO order_product (order_id, prod_id, order_quantity)
+VALUES ('0110', '0010', 9);
 
 -- Insert statements for address table
 INSERT INTO address (address_id, address_type, street_address, city, state, postal_code, cust_id)
@@ -497,4 +559,9 @@ VALUES ('0010', 'purpleguy', 'ialwayscomeback');
 
 -- Insert statements for shipment table
 INSERT INTO shipment (ship_id, ship_status, one_time_order_id)
-VALUES ('0010', 'Shipped', '0010');
+VALUES ('0010', 'Shipped', '0110');
+
+
+
+
+
