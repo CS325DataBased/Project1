@@ -29,16 +29,15 @@ set feedback off;
 break on report
 compute avg of "Total Order Amount" on report
 col "Customer Name" format a20 truncate
-col "Total Order Amount" for $9999.99
 col "State" format a5 truncate
 select c.cust_id "ID", c.cust_lname || ', ' || c.cust_fname "Customer Name",
     a.state "State",
-    sum(co.order_amount) "Total Order Amount"
+    sum(co.order_amount) "Total Items Ordered"
 from customer c
     join cust_order co on c.cust_id = co.cust_id
     join address a on c.cust_id = a.cust_id
 group by c.cust_id, c.cust_fname, c.cust_lname, a.state
-order by "Total Order Amount" desc;
+order by "Total Items Ordered" desc;
 
 
 spool off
