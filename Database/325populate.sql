@@ -1,5 +1,5 @@
 -- CS325-Fall-2023
--- Last Modified: 12/8/23
+-- Last Modified: 12/1/23
 
 -- Group Name: DataBased
 
@@ -11,10 +11,6 @@
 -- Chan Rain
 -- Bridget Acosta
 
-delete from customer;
-delete from account;
-delete from address;
-delete from credit_card_info;
 delete from shipment;
 delete from one_time_order;
 delete from subscription_shipment;
@@ -22,6 +18,11 @@ delete from subscription_order;
 delete from order_product;
 delete from product;
 delete from cust_order;
+delete from account;
+delete from address;
+delete from credit_card_info;
+delete from customer;
+
 
 
 
