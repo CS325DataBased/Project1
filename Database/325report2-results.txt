@@ -1,0 +1,21 @@
+
+Fri Dec 08                                                        page    1
+               Top-Selling Products by Revenue (TSPR) Report
+
+Customer Name        Product Name                   Quantity Sold   Revenue
+-------------------- ------------------------------ ------------- ---------
+Afton, William       Springs                                    6    $54.00
+Berry, Michael       Wrench                                     7    $84.00
+Carter, Sammy        Ink                                        2    $86.00
+Christie, Agatha     Typewriter Key Kit                         1    $30.00
+Connors, Joey        Screwdriver                                5    $60.00
+Doe, J               P Key                                      
+2    $22.00
+Hanks, Thomas        Purple Ribbon                              4   $100.00
+Hemingway, Ernest    Typewriter Ribbon                          2    $40.00
+King, Stephen        Good ol Fashioned Typewriter               2   $300.00
+Smith, Jane          F Key                                      3    $48.00
+                                                                  ---------
+sum                                                                 $824.00
+
+           End of Top-Selling Products by Revenue (TSPR) Report
