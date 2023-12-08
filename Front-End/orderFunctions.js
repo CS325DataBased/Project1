@@ -115,14 +115,14 @@ var createNewOrder = function () {
     var addressZip = document.getElementById('orderAddressZip').value;
 
     var card = {
-      cc_id: Math.floor(Math.random()*9999),
+      cc_id: generateRandomNumber(),
       cc_number: cardNumber,
       cc_expiration: cardExpiration,
       cc_cvv: cardCVV
     };
 
     var address = {
-      address_id: Math.floor(Math.random()*9999),
+      address_id: generateRandomNumber(),
       addressType: "shipping",
       street: addressStreet,
       city: addressCity,
@@ -396,6 +396,10 @@ var addPartToOrder = function () {
   // When response.text() has succeeded, the `then()` handler is called with
   // the text, and we copy it into the `poemDisplay` box.
   .then((json) => {
+    if(json.length == 0) {
+      alert("Part does not exist.");
+      return;
+    }
     partID = json[0].prod_id;
     console.log(partID);
     var partQuantity = document.getElementById('orderPartQuantity').value;

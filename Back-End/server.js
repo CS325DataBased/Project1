@@ -244,7 +244,8 @@ app.post('/addAddressToDB', (req, res) => {
   });
 });
 
-app.post('/addOrderPrductsToDB', (req, res) => {
+app.post('/addOrderProductsToDB', (req, res) => {
+  console.log(req.body.item_id,req.body.item_quantity,req.body.order_id);
   console.log(req.body.item_id,req.body.item_quantity,req.body.order_id);
   con.query('insert into order_product SET prod_id = ?, order_quantity = ?, order_id = ?',[req.body.item_id,req.body.item_quantity,req.body.order_id],function (error, results, fields) {
     if (error) {

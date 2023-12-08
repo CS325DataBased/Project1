@@ -21,7 +21,8 @@ var addNewOrderToDB = function(orderInfo,items,card,address,type) {
     body: JSON.stringify({status:orderInfo.orderStatus,type:type,orderid:orderInfo.order_id,custid:orderInfo.cust_id,order_date:orderInfo.order_date,order_amount:orderInfo.order_amount,sales_tax:orderInfo.sales_tax,cc_id:card.cc_id,address_id:address.address_id})
   });
   
-  const url4 = 'http://localhost:80/addOrderPrductsToDB';
+  const url4 = 'http://localhost:80/addOrderProductsToDB';
+  console.log(items.length)
   for(let i = 0;i < items.length;i++) {
     console.log(items[i].id,items[i].name,items[i].quantity,orderInfo.order_id);
     const response4 = fetch(url4, {

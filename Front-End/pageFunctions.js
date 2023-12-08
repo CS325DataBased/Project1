@@ -29,8 +29,9 @@ function formatPrice(number) {
 
 // random number generator
 function generateRandomNumber() {
-  var numbers = Array.from(Array(9999), (_, i) => i + 1);
+  var numbers = Array.from(Array(8998), (_, i) => i + 1);
   numbers.sort(() => Math.random() - 0.5);
+  numbers[0] = numbers[0] + 1000;
   return numbers[0];
 }
 
