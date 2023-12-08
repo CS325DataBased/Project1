@@ -1,19 +1,19 @@
 Fri Dec 08                                                        page    1
                    Customer Lifetime Value (CLV) Report
 
-ID   Customer Name        State Total Order Amount                         
----- -------------------- ----- ------------------                         
-0004 King, Stephen        ME              $1332.00                         
-0002 Carter, Sammy        CA               $980.00                         
-0009 Connors, Joey        UT               $320.00                         
-0005 Hemingway, Ernest    CA               $300.00                         
-0007 Smith, Jane          MA               $300.00                         
-0010 Afton, William       OH               $290.00                         
-0008 Berry, Michael       ND               $250.00                         
-0006 Christie, Agatha     LA               $240.00                         
-0001 Doe, J               CA               $200.00                         
-0003 Hanks, Thomas        CA                 $8.00                         
-                                ------------------                         
-avg                                        $422.00                         
+ID   Customer Name        State Total Items Ordered                        
+---- -------------------- ----- -------------------                        
+0004 King, Stephen        ME                   1332                        
+0002 Carter, Sammy        CA                    980                        
+0009 Connors, Joey        UT                    320                        
+0005 Hemingway, Ernest    CA                    300                        
+0007 Smith, Jane          MA                    300                        
+0010 Afton, William       OH                    290                        
+0008 Berry, Michael       ND                    250                        
+0006 Christie, Agatha     LA                    240                        
+0001 Doe, J               CA                    200                        
+0003 Hanks, Thomas        CA                      8                        
+
+
 
                 End of Customer Lifetime Value (CLV) Report
