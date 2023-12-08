@@ -1,4 +1,4 @@
-var addNewOrderToDB = function(orderInfo,items,card,address,type,status) {
+var addNewOrderToDB = function(orderInfo,items,card,address,type) {
   const url = 'http://localhost:80/addCardToDB';
   const response = fetch(url, {
     method: 'post',
@@ -18,7 +18,7 @@ var addNewOrderToDB = function(orderInfo,items,card,address,type,status) {
   const response3 = fetch(url3, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({status:status,type:type,orderid:orderInfo.order_id,custid:orderInfo.cust_id,order_date:orderInfo.order_date,order_amount:orderInfo.order_amount,sales_tax:orderInfo.sales_tax,cc_id:card.cc_id,address_id:address.address_id})
+    body: JSON.stringify({status:orderInfo.orderStatus,type:type,orderid:orderInfo.order_id,custid:orderInfo.cust_id,order_date:orderInfo.order_date,order_amount:orderInfo.order_amount,sales_tax:orderInfo.sales_tax,cc_id:card.cc_id,address_id:address.address_id})
   });
   
   const url4 = 'http://localhost:80/addOrderPrductsToDB';
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function(){
         let card = json[i][2];
         let address = json[i][3];
         console.log(json[i]);
-        addOrder(formatNumber(json[i][1].order_id),"Returned",json[i][1].order_date,customer_name,items,card,address);
+        addOrder(formatNumber(json[i][1].order_id),orderInfo.status,json[i][1].order_date,customer_name,items,card,address);
         // let address = {address_id:json[i].address_id,addressType:json[i].address_type,street:json[i].street,city:json[i].city,state:json[i].state,zip:json[i].postal};
         // console.log(address);
         // let card = {cc_id:json[i].cc_id,cc_number:json[i].cc_number,cc_expiration:json[i].cc_expiration,cc_cvv:json[i].cc_cvv};

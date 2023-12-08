@@ -112,9 +112,9 @@ app.get('/GetProductData', (req, res) => {
 
 app.get('/GetOneTimeOrderData', (req, res) => {
 
-  var getOrders = 'select * from cust_order,credit_card_info,address,customer where cust_order.cc_id = credit_card_info.cc_id and cust_order.address_id = address.address_id and cust_order.cust_id = customer.cust_id';
+  var getOrders = 'select * from cust_order,credit_card_info,address,customer,one_time_order where cust_order.cc_id = credit_card_info.cc_id and cust_order.address_id = address.address_id and cust_order.cust_id = customer.cust_id and cust_order.order_id = one_time_order.one_time_order_id';
   con.query(getOrders, function (error, results) {
-    // console.log(results);
+    console.log(results);
     if (error) {
       console.log(error);
     } else {
@@ -129,7 +129,7 @@ app.get('/GetOneTimeOrderData', (req, res) => {
             console.log(results2[j].prod_id,results2[j].prod_name,results2[j].prod_desc,results2[j].prod_price,results2[j].prod_quantity)
             items.push({id:results2[j].prod_id,name:results2[j].prod_name,quantity:results2[j].prod_quantity});
           }
-          let orderInfo = {order_id:results[i].order_id,cust_id:results[i].cust_id,order_date:results[i].order_date,order_amount:results[i].order_amount,sales_tax:results[i].sales_tax,cc_id:results[i].cc_id,items:items};
+          let orderInfo = {status:results[i].order_status,order_id:results[i].order_id,cust_id:results[i].cust_id,order_date:results[i].order_date,order_amount:results[i].order_amount,sales_tax:results[i].sales_tax,cc_id:results[i].cc_id,items:items};
           let card = {cc_id:results[i].cc_id,cc_number:results[i].card_number,cc_expiration:results[i].expiration_date,cc_cvv:results[i].CVV};
           let address = {address_id:results[i].address_id,addressType:results[i].address_type,street:results[i].street_address,city:results[i].city,state:results[i].state,zip:results[i].postal_code};
           let customer = {cust_id:results[i].cust_id,first_name:results[i].cust_fname,last_name:results[i].cust_lname,email:results[i].email,phone:results[i].cust_phone};
