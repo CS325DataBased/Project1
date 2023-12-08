@@ -65,7 +65,7 @@ prompt #3 - Items Sold the Most by State
 prompt ==============================================================================
 --This query shows the total quantity of items sold the most by state.
 --Answers business scenario question #3: What items are sold the most by state?
-select a.state, p.prod_id, p.prod_name, SUM(op.order_quantity) total_sold
+select a.state, p.prod_id, p.prod_name, sum(op.order_quantity) total_sold
 from address a
     join customer c on a.cust_id = c.cust_id
     join cust_order co on c.cust_id = co.cust_id
@@ -114,8 +114,8 @@ prompt =========================================================================
 prompt #6 - Customer Lifetime Value (CLV)
 prompt ==============================================================================
 --Calculates the CLV for each customer based on their historical order amounts
-col cust_fname format a20 trucate
-col cust_lname format a20 trucate
+col cust_fname format a20 truncate
+col cust_lname format a20 truncate
 select c.cust_id, c.cust_fname, c.cust_lname,
     sum(co.order_amount) total_order_amount
 from customer c
