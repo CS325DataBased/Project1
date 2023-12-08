@@ -1,16 +1,16 @@
 --Last Modified: 12/8/23
 
-DROP TABLE IF EXISTS shipment;
-DROP TABLE IF EXISTS one_time_order;
-DROP TABLE IF EXISTS subscription_shipment;
-DROP TABLE IF EXISTS subscription_order;
-DROP TABLE IF EXISTS account;
-DROP TABLE IF EXISTS order_product;
-DROP TABLE IF EXISTS cust_order;
-DROP TABLE IF EXISTS address;
-DROP TABLE IF EXISTS credit_card_info;
-DROP TABLE IF EXISTS customer;
-DROP TABLE IF EXISTS product;
+DROP TABLE shipment;
+DROP TABLE one_time_order;
+DROP TABLE subscription_shipment;
+DROP TABLE subscription_order;
+DROP TABLE account;
+DROP TABLE order_product;
+DROP TABLE cust_order;
+DROP TABLE address;
+DROP TABLE credit_card_info;
+DROP TABLE customer;
+DROP TABLE product;
 
 
 CREATE TABLE customer (
@@ -72,10 +72,8 @@ CREATE TABLE subscription_shipment (
   sub_period varchar(50),
   sub_date date,
   ship_date date,
-  address_id char(4),
   PRIMARY KEY (sub_ship_id),
-  FOREIGN KEY (sub_ship_id) REFERENCES subscription_order(sub_order_id),
-  FOREIGN KEY (address_id) REFERENCES address(address_id)
+  FOREIGN KEY (sub_ship_id) REFERENCES subscription_order(sub_order_id)
 );
 
 CREATE TABLE one_time_order (
@@ -115,10 +113,7 @@ CREATE TABLE shipment (
   ship_id char(4),
   ship_status varchar(100),
   one_time_order_id char(4),
-  address_id char(4),
   PRIMARY KEY (ship_id),
-  FOREIGN KEY (one_time_order_id) REFERENCES one_time_order(one_time_order_id),
-  FOREIGN KEY (address_id) REFERENCES address(address_id)
+  FOREIGN KEY (one_time_order_id) REFERENCES one_time_order(one_time_order_id)
 );
-
 
