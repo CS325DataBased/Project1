@@ -1,0 +1,69 @@
+================================================================================
+#1 - Customers with Recurring Orders for Typewriter Ribbon in the Past 6 Months
+================================================================================
+
+ID   NAME                                                                       
+---- --------------------                                                       
+0005 Ernest Hemingway                                                           
+
+
+============================================================================
+#2 - Items Most Frequently Shipped from January to March of This Year
+============================================================================
+
+PROD PROD_NAME                      AMOUNT_SHIPPED                              
+---- ------------------------------ --------------                              
+0001 P Key                                      77                              
+1745 Purple Ribbon                               4                              
+0002 Ink                                         2                              
+0004 Good ol Fashioned Typewriter                2                              
+
+
+==============================================================================
+#3 - Items Sold the Most by State
+==============================================================================
+
+ST PROD PROD_NAME                      TOTAL_SOLD                               
+-- ---- ------------------------------ ----------                               
+CA 0001 P Key                                  77                               
+MA 0007 F Key                                  20                               
+ND 0008 Wrench                                 16                               
+OH 0010 Springs                                15                               
+CA 0005 Typewriter Ribbon                       9                               
+UT 0009 Screwdriver                             8                               
+CA 0002 Ink                                     4                               
+CA 1745 Purple Ribbon                           4                               
+LA 0006 Typewriter Key Kit                      4                               
+ME 0004 Good ol Fashioned Typewriter            2                               
+
+10 rows selected.
+
+
+==============================================================================
+#4 - Order Status for Subscription Items that Have Been Purchased
+==============================================================================
+
+CUST NAME                 Subscription Status Shipment Status                   
+---- -------------------- ------------------- ----------------------------------
+0005 Ernest Hemingway                       1 Shipped                           
+
+
+==============================================================================
+#5 - Number of Subscriptions and Their Details
+==============================================================================
+
+SUB_ PRODUCT                   SUB_STAT SUB_PERIOD                              
+---- ------------------------- -------- ----------------------------------------
+0001 P Key                     Active   Monthly                                 
+0002 Ink                       Active   Monthly                                 
+0003 Purple Ribbon             Active   Monthly                                 
+0004 Good ol Fashioned Typewri Active   Monthly                                 
+0005 Typewriter Ribbon         Active   Monthly                                 
+0006 Typewriter Key Kit        Active   Monthly                                 
+0007 F Key                     Active   Monthly                                 
+0008 Wrench                    Active   Monthly                                 
+0009 Screwdriver               Active   Monthly                                 
+0010 Springs                   Active   Monthly                                 
+
+10 rows selected.
+
